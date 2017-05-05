@@ -1,14 +1,19 @@
 package com.telefonica.fisioterapiaparati;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -89,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         ComunicacionTask com = new ComunicacionTask();
         //le pasa como parámetro la dirección
         //de la página
-        com.execute("https://www.googleapis.com/youtube/v3/search?key=AIzaSyArBI9PaihSf2ShUV3zeQLby9ItDDNvJgE&channelId=UCYALMdLMd75Q7BTyRikYz5g&part=snippet,id&order=date&maxResults=30");
+        com.execute("https://www.googleapis.com/youtube/v3/search?key=AIzaSyArBI9PaihSf2ShUV3zeQLby9ItDDNvJgE&channelId=UCYALMdLMd75Q7BTyRikYz5g&part=snippet,id&order=date&maxResults=50");
 
 
     }
@@ -128,10 +133,10 @@ public class MainActivity extends AppCompatActivity {
             try {
                 JSONObject object = new JSONObject(result);
                 JSONArray items = object.getJSONArray("items");
-                String[] videosIds = new String[items.length()];
-                String[] videosTitle = new String[items.length()];
-                String[] videosDescription = new String[items.length()];
-                String[] videosImage = new String[items.length()];
+                final String[] videosIds = new String[items.length()-1];
+                String[] videosTitle = new String[items.length()-1];
+                String[] videosDescription = new String[items.length()-1];
+                String[] videosImage = new String[items.length()-1];
                 String type;
                 for (int i = 0; i < items.length(); i++) {
                     JSONObject job = items.getJSONObject(i);
@@ -139,15 +144,15 @@ public class MainActivity extends AppCompatActivity {
                     type = ids.getString("kind");
                     if (type.equals("youtube#video")) {
                         videosIds[i] = ids.getString("videoId");
+                        JSONObject snippet = job.getJSONObject("snippet");
+                        videosTitle[i] = cortarTitulos(snippet.getString("title"));
+                        videosDescription[i] = snippet.getString("description");
+                        JSONObject thumbnails = snippet.getJSONObject("thumbnails");
+                        JSONObject medium = thumbnails.getJSONObject("medium");
+                        videosImage[i] = medium.getString("url");
+                        Video video = new Video(videosIds[i], videosTitle[i], videosDescription[i], videosImage[i]);
+                        videos.add(video);
                     }
-                    JSONObject snippet = job.getJSONObject("snippet");
-                    videosTitle[i] = cortarTitulos(snippet.getString("title"));
-                    videosDescription[i] = snippet.getString("description");
-                    JSONObject thumbnails = snippet.getJSONObject("thumbnails");
-                    JSONObject medium = thumbnails.getJSONObject("medium");
-                    videosImage[i] = medium.getString("url");
-                    Video video = new Video(videosIds[i], videosTitle[i], videosDescription[i], videosImage[i]);
-                    videos.add(video);
                 }
                 for (int j=0; j<videos.size();j++){
                     titulos.add(videos.get(j).getTitulo());
@@ -157,6 +162,18 @@ public class MainActivity extends AppCompatActivity {
 
                 CustomList adapter = new CustomList(MainActivity.this, videosTitle, videosImage);
                 lista.setAdapter(adapter);
+                lista.setOnItemClickListener(
+                        new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent,
+                                                    View view, int position, long id) {
+                               /* Toast.makeText(MainActivity.this,
+                                        "Años de publicación: "+anos.get(position)+"\nNúmero de páginas: "+paginas.get(position),
+                                        Toast.LENGTH_SHORT).show();*/
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube://" + videosIds[position]));
+                                startActivity(intent);
+                            }
+                        });
             } catch (JSONException e) {
                 e.printStackTrace();
             }
