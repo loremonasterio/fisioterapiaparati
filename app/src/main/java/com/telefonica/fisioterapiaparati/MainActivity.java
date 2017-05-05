@@ -1,14 +1,19 @@
 package com.telefonica.fisioterapiaparati;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,6 +23,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
@@ -26,33 +32,32 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     ArrayList<Video> videos = new ArrayList<Video>();
+    ArrayList<String> titulos = new ArrayList<String>();
+    ArrayList<String> imagenes = new ArrayList<String>();
+    private ListView lista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.mainactivity_content);
+        lista=(ListView)findViewById(R.id.listaTitulos);
+        //ArrayAdapter<String> adapter= new ArrayAdapter<String>(Ranking.this, android.R.layout.simple_list_item_1,titulos);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
         cargarVideos();
-        for(int i=0;i<videos.size();i++){
-            System.out.println("LORE: "+videos.get(i).getDescripcion());
-        }
     }
 
     public void onResume(){
         super.onResume();
-        for(int i=0;i<videos.size();i++){
-            System.out.println(videos.get(i).toString());
-        }
     }
 
     @Override
@@ -120,17 +125,17 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             try {
                 JSONObject object = new JSONObject(result);
-                JSONArray items =  object.getJSONArray("items");
+                JSONArray items = object.getJSONArray("items");
                 String[] videosIds = new String[items.length()];
                 String[] videosTitle = new String[items.length()];
                 String[] videosDescription = new String[items.length()];
                 String[] videosImage = new String[items.length()];
                 String type;
-                for(int i=0;i<items.length();i++){
-                    JSONObject job=items.getJSONObject(i);
+                for (int i = 0; i < items.length(); i++) {
+                    JSONObject job = items.getJSONObject(i);
                     JSONObject ids = job.getJSONObject("id");
                     type = ids.getString("kind");
-                    if(type.equals("youtube#video") ) {
+                    if (type.equals("youtube#video")) {
                         videosIds[i] = ids.getString("videoId");
                     }
                     JSONObject snippet = job.getJSONObject("snippet");
@@ -139,9 +144,18 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject thumbnails = snippet.getJSONObject("thumbnails");
                     JSONObject medium = thumbnails.getJSONObject("medium");
                     videosImage[i] = medium.getString("url");
-                    Video video = new Video(videosIds[i],videosTitle[i],videosDescription[i],videosImage[i]);
+                    Video video = new Video(videosIds[i], videosTitle[i], videosDescription[i], videosImage[i]);
                     videos.add(video);
                 }
+                for (int j=0; j<videos.size();j++){
+                    titulos.add(videos.get(j).getTitulo());
+                    imagenes.add(videos.get(j).getImagen());
+                }
+                //ArrayAdapter<String> adapter= new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1,titulos);
+               CustomList adapter = new CustomList(MainActivity.this, videosTitle, videosImage);
+                //Onadapter adapter = new Onadapter(MainActivity.this, videosTitle, videosImage);
+                lista.setAdapter(adapter);
+
 
 
             } catch (JSONException e) {
