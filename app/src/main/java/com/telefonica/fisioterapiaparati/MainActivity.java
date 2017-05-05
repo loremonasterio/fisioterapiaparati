@@ -13,7 +13,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,8 +31,6 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     ArrayList<Video> videos = new ArrayList<Video>();
-    ArrayList<String> titulos = new ArrayList<String>();
-    ArrayList<String> imagenes = new ArrayList<String>();
     String[] tituloSinInternet = {"Se necesita conexión a internet para acceder a los vídeos"};
     String[] fotoSinInternet = {"https://static.parastorage.com/services/santa/1.2207.10/static/images/video/not-found.png"};
     private ListView lista;
@@ -43,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainactivity_content);
         lista=(ListView)findViewById(R.id.listaTitulos);
-        //ArrayAdapter<String> adapter= new ArrayAdapter<String>(Ranking.this, android.R.layout.simple_list_item_1,titulos);
+
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 
@@ -133,47 +130,28 @@ public class MainActivity extends AppCompatActivity {
             try {
                 JSONObject object = new JSONObject(result);
                 JSONArray items = object.getJSONArray("items");
-                final String[] videosIds = new String[items.length()-1];
-                String[] videosTitle = new String[items.length()-1];
-                String[] videosDescription = new String[items.length()-1];
-                String[] videosImage = new String[items.length()-1];
+                String videoId;
+                String videoTitle;
+                String videoDescription;
+                String videoImage;
                 String type;
                 for (int i = 0; i < items.length(); i++) {
                     JSONObject job = items.getJSONObject(i);
                     JSONObject ids = job.getJSONObject("id");
                     type = ids.getString("kind");
                     if (type.equals("youtube#video")) {
-                        videosIds[i] = ids.getString("videoId");
+                        videoId = ids.getString("videoId");
                         JSONObject snippet = job.getJSONObject("snippet");
-                        videosTitle[i] = cortarTitulos(snippet.getString("title"));
-                        videosDescription[i] = snippet.getString("description");
+                        videoTitle = cortarTitulos(snippet.getString("title"));
+                        videoDescription = snippet.getString("description");
                         JSONObject thumbnails = snippet.getJSONObject("thumbnails");
                         JSONObject medium = thumbnails.getJSONObject("medium");
-                        videosImage[i] = medium.getString("url");
-                        Video video = new Video(videosIds[i], videosTitle[i], videosDescription[i], videosImage[i]);
+                        videoImage = medium.getString("url");
+                        Video video = new Video(videoId, videoTitle, videoDescription, videoImage);
                         videos.add(video);
                     }
                 }
-                for (int j=0; j<videos.size();j++){
-                    titulos.add(videos.get(j).getTitulo());
-                    cortarTitulos(titulos.get(j));
-                    imagenes.add(videos.get(j).getImagen());
-                }
-
-                CustomList adapter = new CustomList(MainActivity.this, videosTitle, videosImage);
-                lista.setAdapter(adapter);
-                lista.setOnItemClickListener(
-                        new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> parent,
-                                                    View view, int position, long id) {
-                               /* Toast.makeText(MainActivity.this,
-                                        "Años de publicación: "+anos.get(position)+"\nNúmero de páginas: "+paginas.get(position),
-                                        Toast.LENGTH_SHORT).show();*/
-                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube://" + videosIds[position]));
-                                startActivity(intent);
-                            }
-                        });
+                generarLista(videos);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -190,6 +168,28 @@ public class MainActivity extends AppCompatActivity {
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null;
+    }
+
+    public void generarLista(ArrayList<Video> videos){
+        String[] titulos = new String[videos.size()];
+        String[] fotos = new String[videos.size()];
+        final String[] videoIDS = new String[videos.size()];
+        for (int i=0; i<videos.size(); i++){
+            titulos[i] = videos.get(i).getTitulo();
+            fotos[i] = videos.get(i).getImagen();
+            videoIDS[i] = videos.get(i).getVideoID();
+        }
+        CustomList adapter = new CustomList(MainActivity.this, titulos, fotos);
+        lista.setAdapter(adapter);
+        lista.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent,
+                                            View view, int position, long id) {
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube://" + videoIDS[position]));
+                        startActivity(intent);
+                    }
+                });
     }
 
 }
