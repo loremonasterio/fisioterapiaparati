@@ -28,6 +28,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -139,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                         videosIds[i] = ids.getString("videoId");
                     }
                     JSONObject snippet = job.getJSONObject("snippet");
-                    videosTitle[i] = snippet.getString("title");
+                    videosTitle[i] = cortarTitulos(snippet.getString("title"));
                     videosDescription[i] = snippet.getString("description");
                     JSONObject thumbnails = snippet.getJSONObject("thumbnails");
                     JSONObject medium = thumbnails.getJSONObject("medium");
@@ -149,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 for (int j=0; j<videos.size();j++){
                     titulos.add(videos.get(j).getTitulo());
+                    cortarTitulos(titulos.get(j));
                     imagenes.add(videos.get(j).getImagen());
                 }
                 //ArrayAdapter<String> adapter= new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1,titulos);
@@ -163,4 +165,10 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    public String cortarTitulos(String titulo) {
+        String[] tokens = titulo.split("-");
+        return tokens[0];
+    }
+
 }
