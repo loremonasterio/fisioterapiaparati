@@ -1,18 +1,13 @@
 package com.telefonica.fisioterapiaparati;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -23,18 +18,19 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
+
 
 public class MainActivity extends AppCompatActivity {
 
     ArrayList<Video> videos = new ArrayList<Video>();
     ArrayList<String> titulos = new ArrayList<String>();
     ArrayList<String> imagenes = new ArrayList<String>();
+    String[] tituloSinInternet = {"Se necesita conexión a internet para acceder a los vídeos"};
+    String[] fotoSinInternet = {"https://static.parastorage.com/services/santa/1.2207.10/static/images/video/not-found.png"};
     private ListView lista;
 
     @Override
@@ -54,7 +50,12 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });*/
-        cargarVideos();
+        if(isNetworkAvailable()) {
+            cargarVideos();
+        }else{
+            CustomList adapter = new CustomList(MainActivity.this, tituloSinInternet, fotoSinInternet);
+            lista.setAdapter(adapter);
+        }
     }
 
     public void onResume(){
@@ -153,13 +154,9 @@ public class MainActivity extends AppCompatActivity {
                     cortarTitulos(titulos.get(j));
                     imagenes.add(videos.get(j).getImagen());
                 }
-                //ArrayAdapter<String> adapter= new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1,titulos);
-               CustomList adapter = new CustomList(MainActivity.this, videosTitle, videosImage);
-                //Onadapter adapter = new Onadapter(MainActivity.this, videosTitle, videosImage);
+
+                CustomList adapter = new CustomList(MainActivity.this, videosTitle, videosImage);
                 lista.setAdapter(adapter);
-
-
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -169,6 +166,13 @@ public class MainActivity extends AppCompatActivity {
     public String cortarTitulos(String titulo) {
         String[] tokens = titulo.split("-");
         return tokens[0];
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null;
     }
 
 }

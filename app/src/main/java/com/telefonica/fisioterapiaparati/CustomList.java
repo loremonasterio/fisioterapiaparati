@@ -4,35 +4,22 @@ package com.telefonica.fisioterapiaparati;
  * Created by telefonica on 05/05/2017.
  */
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.os.StrictMode;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.androidquery.AQuery;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
-import java.nio.charset.Charset;
-
-import static android.R.attr.label;
 
 public class CustomList extends ArrayAdapter<String>{
 
@@ -55,11 +42,7 @@ public class CustomList extends ArrayAdapter<String>{
         ImageView imageView = (ImageView) rowView.findViewById(R.id.img);
         txtTitle.setText(web[position]);
         new ImageLoadTask(imageId[position], imageView).execute();
-        //imageView.setImageDrawable(LoadImageFromWebOperations(imageId[position]));
-        //AQuery aq=new AQuery(view);
-        //aq.id(R.id.img).image(imageId[position]);
-        //AQuery aq = new AQuery(view);
-        //aq.id(R.id.img).image(imageId[position], true, true, 0, 0, null, AQuery.FADE_IN_NETWORK, 1.0f);
+
         return rowView;
     }
 
