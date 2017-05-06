@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
         if(isNetworkAvailable()) {
-            cargarVideos();
+            cargarVideos("https://www.googleapis.com/youtube/v3/search?key=AIzaSyArBI9PaihSf2ShUV3zeQLby9ItDDNvJgE&channelId=UCYALMdLMd75Q7BTyRikYz5g&part=snippet,id&order=date");
         }else{
             CustomList adapter = new CustomList(MainActivity.this, tituloSinInternet, fotoSinInternet);
             lista.setAdapter(adapter);
@@ -86,12 +86,12 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void cargarVideos() {
+    public void cargarVideos(String url) {
         //iniciar tarea en segundo plano
         ComunicacionTask com = new ComunicacionTask();
         //le pasa como parámetro la dirección
         //de la página
-        com.execute("https://www.googleapis.com/youtube/v3/search?key=AIzaSyArBI9PaihSf2ShUV3zeQLby9ItDDNvJgE&channelId=UCYALMdLMd75Q7BTyRikYz5g&part=snippet,id&order=date&maxResults=50");
+        com.execute(url);
 
 
     }
@@ -128,7 +128,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             try {
+                String nextToken = "";
                 JSONObject object = new JSONObject(result);
+                nextToken = object.optString("nextPageToken");
                 JSONArray items = object.getJSONArray("items");
                 String videoId;
                 String videoTitle;
@@ -150,6 +152,9 @@ public class MainActivity extends AppCompatActivity {
                         Video video = new Video(videoId, videoTitle, videoDescription, videoImage);
                         videos.add(video);
                     }
+                }
+                if(nextToken!=""){
+                    cargarVideos("https://www.googleapis.com/youtube/v3/search?key=AIzaSyArBI9PaihSf2ShUV3zeQLby9ItDDNvJgE&channelId=UCYALMdLMd75Q7BTyRikYz5g&part=snippet,id&order=date&pageToken="+nextToken);
                 }
                 generarLista(videos);
             } catch (JSONException e) {
