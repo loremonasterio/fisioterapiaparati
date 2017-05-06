@@ -7,11 +7,14 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -34,12 +37,16 @@ public class MainActivity extends AppCompatActivity {
     String[] tituloSinInternet = {"Se necesita conexión a internet para acceder a los vídeos"};
     String[] fotoSinInternet = {"https://static.parastorage.com/services/santa/1.2207.10/static/images/video/not-found.png"};
     private ListView lista;
+    private ImageButton botonCargar;
+    private String nextToken = "";
+    private boolean esFinal = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainactivity_content);
         lista=(ListView)findViewById(R.id.listaTitulos);
+        botonCargar = (ImageButton)findViewById(R.id.cargar);
 
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
@@ -53,10 +60,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
         if(isNetworkAvailable()) {
-            cargarVideos("https://www.googleapis.com/youtube/v3/search?key=AIzaSyArBI9PaihSf2ShUV3zeQLby9ItDDNvJgE&channelId=UCYALMdLMd75Q7BTyRikYz5g&part=snippet,id&order=date");
+            cargarVideos("https://www.googleapis.com/youtube/v3/search?key=AIzaSyArBI9PaihSf2ShUV3zeQLby9ItDDNvJgE&channelId=UCYALMdLMd75Q7BTyRikYz5g&part=snippet,id&order=date&maxResults=2");
         }else{
             CustomList adapter = new CustomList(MainActivity.this, tituloSinInternet, fotoSinInternet);
             lista.setAdapter(adapter);
+        }
+        if(!esFinal) {
+            findViewById(R.id.cargar)
+                    .setOnClickListener(new View.OnClickListener() {
+
+                        @Override
+                        public void onClick(View v) {
+                            cargarMas();
+                            findViewById(R.id.cargar).setEnabled(false);
+
+                            new Handler().postDelayed(new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    findViewById(R.id.cargar)
+                                            .setEnabled(true);
+                                }
+                            }, 1000);
+
+                        }
+                    });
+        }else{
+            findViewById(R.id.cargar).setEnabled(false);
         }
     }
 
@@ -128,7 +158,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             try {
-                String nextToken = "";
                 JSONObject object = new JSONObject(result);
                 nextToken = object.optString("nextPageToken");
                 JSONArray items = object.getJSONArray("items");
@@ -153,9 +182,7 @@ public class MainActivity extends AppCompatActivity {
                         videos.add(video);
                     }
                 }
-                if(nextToken!=""){
-                    cargarVideos("https://www.googleapis.com/youtube/v3/search?key=AIzaSyArBI9PaihSf2ShUV3zeQLby9ItDDNvJgE&channelId=UCYALMdLMd75Q7BTyRikYz5g&part=snippet,id&order=date&pageToken="+nextToken);
-                }
+
                 generarLista(videos);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -195,6 +222,16 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
+    }
+
+    public void cargarMas(){
+        if(nextToken!=""){
+            cargarVideos("https://www.googleapis.com/youtube/v3/search?key=AIzaSyArBI9PaihSf2ShUV3zeQLby9ItDDNvJgE&channelId=UCYALMdLMd75Q7BTyRikYz5g&part=snippet,id&order=date&pageToken="+nextToken+"&maxResults=2");
+            lista.setStackFromBottom(true);
+            lista.setTranscriptMode(2);
+        }else{
+            esFinal=true;
+        }
     }
 
 }

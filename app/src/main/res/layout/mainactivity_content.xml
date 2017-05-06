@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF">
+    android:background="#FFF"
+    android:weightSum="1">
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/listaTitulos"/>
+        android:layout_height="444dp"
+        android:id="@+id/listaTitulos"
+        android:layout_weight="0.19" />
+
+    <ImageButton
+        android:id="@+id/cargar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.19"
+        app:srcCompat="@drawable/cargar"
+        android:background="@android:color/transparent"/>
 </LinearLayout>
