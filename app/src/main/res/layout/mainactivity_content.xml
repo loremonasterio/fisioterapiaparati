@@ -8,15 +8,7 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="444dp"
-        android:id="@+id/listaTitulos"
-        android:layout_weight="0.19" />
+        android:layout_height="match_parent"
+        android:id="@+id/listaTitulos" />
 
-    <ImageButton
-        android:id="@+id/cargar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.19"
-        app:srcCompat="@drawable/cargar"
-        android:background="@android:color/transparent"/>
 </LinearLayout>

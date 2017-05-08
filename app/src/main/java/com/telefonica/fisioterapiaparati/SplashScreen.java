@@ -47,20 +47,21 @@ public class SplashScreen extends AppCompatActivity {
 
 
         try{
-            InputStream inputStream = getAssets().open("Gif2.gif");
+            InputStream inputStream = getAssets().open("gif2.gif");
             byte[] bytes = IOUtils.toByteArray(inputStream);
             gif.setBytes(bytes);
             gif.startAnimation();
         }
         catch (IOException ex){
         }
+        /*
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 SplashScreen.this.startActivity(new Intent(SplashScreen.this,MainActivity.class));
                 SplashScreen.this.finish();
             }
-        },10000);
+        },5000);*/
     }
 
     public void cargarVideos(String url) {
@@ -127,7 +128,7 @@ public class SplashScreen extends AppCompatActivity {
                         videoImage = medium.getString("url");
                         Video video = new Video(videoId, videoTitle, videoDescription, videoImage);
                         videos.add(video);
-                        cadenaSP=video+"|";
+                        cadenaSP+=video+"|";
                     }
                 }
             } catch (JSONException e) {
@@ -137,6 +138,8 @@ public class SplashScreen extends AppCompatActivity {
                 cargarVideos("https://www.googleapis.com/youtube/v3/search?key=AIzaSyArBI9PaihSf2ShUV3zeQLby9ItDDNvJgE&channelId=UCYALMdLMd75Q7BTyRikYz5g&part=snippet,id&order=date&pageToken=" + nextToken);
             }else{
                 pasarSP();
+                SplashScreen.this.startActivity(new Intent(SplashScreen.this,MainActivity.class));
+                SplashScreen.this.finish();
             }
         }
 

@@ -2,6 +2,7 @@ package com.telefonica.fisioterapiaparati;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -19,6 +20,8 @@ import android.widget.ListView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,6 +31,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -36,16 +40,21 @@ public class MainActivity extends AppCompatActivity {
     String[] tituloSinInternet = {"Se necesita conexión a internet para acceder a los vídeos"};
     String[] fotoSinInternet = {"https://static.parastorage.com/services/santa/1.2207.10/static/images/video/not-found.png"};
     private ListView lista;
-    private ImageButton botonCargar;
-    private String nextToken = "";
-    private boolean esFinal = false;
+    String cadenaVideos = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainactivity_content);
         lista=(ListView)findViewById(R.id.listaTitulos);
-        botonCargar = (ImageButton)findViewById(R.id.cargar);
+        SharedPreferences sp = this.getSharedPreferences("preferencias", Context.MODE_PRIVATE);
+        cadenaVideos = sp.getString("CadenaVideos","");
+        try {
+            anadirVideos(cadenaVideos);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        generarLista(videos);
 
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
@@ -58,35 +67,11 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });*/
-        if(isNetworkAvailable()) {
-            cargarVideos("https://www.googleapis.com/youtube/v3/search?key=AIzaSyArBI9PaihSf2ShUV3zeQLby9ItDDNvJgE&channelId=UCYALMdLMd75Q7BTyRikYz5g&part=snippet,id&order=date&maxResults=2");
-        }else{
+        if(!isNetworkAvailable()) {
             CustomList adapter = new CustomList(MainActivity.this, tituloSinInternet, fotoSinInternet);
             lista.setAdapter(adapter);
         }
-        if(!esFinal) {
-            findViewById(R.id.cargar)
-                    .setOnClickListener(new View.OnClickListener() {
 
-                        @Override
-                        public void onClick(View v) {
-                            cargarMas();
-                            findViewById(R.id.cargar).setEnabled(false);
-
-                            new Handler().postDelayed(new Runnable() {
-
-                                @Override
-                                public void run() {
-                                    findViewById(R.id.cargar)
-                                            .setEnabled(true);
-                                }
-                            }, 1000);
-
-                        }
-                    });
-        }else{
-            findViewById(R.id.cargar).setEnabled(false);
-        }
     }
 
     public void onResume(){
@@ -114,92 +99,6 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    public void cargarVideos(String url) {
-        //iniciar tarea en segundo plano
-        ComunicacionTask com = new ComunicacionTask();
-        //le pasa como parámetro la dirección
-        //de la página
-        com.execute(url);
-
-
-    }
-
-    private class ComunicacionTask extends AsyncTask<String, Void, String> {
-
-        //    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-        @Override
-        protected String doInBackground(String... params) {
-
-            String cadenaJson = "";
-            try {
-                //monta la url con la dirección y parámetro
-                //de envío
-                URL url = new URL(params[0]);
-                URLConnection con = url.openConnection();
-                //recuperacion de la respuesta JSON
-                String s;
-                InputStream is = con.getInputStream();
-                //utilizamos UTF-8 para que interprete
-                //correctamente las ñ y acentos
-                BufferedReader bf = new BufferedReader(
-                        new InputStreamReader(is, Charset.forName("UTF-8")));
-                while ((s = bf.readLine()) != null) {
-                    cadenaJson += s;
-                }
-
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-            return cadenaJson;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            try {
-                JSONObject object = new JSONObject(result);
-                nextToken = object.optString("nextPageToken");
-                JSONArray items = object.getJSONArray("items");
-                String videoId;
-                String videoTitle;
-                String videoDescription;
-                String videoImage;
-                String type;
-                for (int i = 0; i < items.length(); i++) {
-                    JSONObject job = items.getJSONObject(i);
-                    JSONObject ids = job.getJSONObject("id");
-                    type = ids.getString("kind");
-                    if (type.equals("youtube#video")) {
-                        videoId = ids.getString("videoId");
-                        JSONObject snippet = job.getJSONObject("snippet");
-                        videoTitle = cortarTitulos(snippet.getString("title"));
-                        videoDescription = snippet.getString("description");
-                        JSONObject thumbnails = snippet.getJSONObject("thumbnails");
-                        JSONObject medium = thumbnails.getJSONObject("medium");
-                        videoImage = medium.getString("url");
-                        Video video = new Video(videoId, videoTitle, videoDescription, videoImage);
-                        videos.add(video);
-                    }
-                }
-                generarLista(videos);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public String cortarTitulos(String titulo) {
-        String[] tokens = titulo.split("-");
-        return tokens[0];
-    }
-
-    private boolean isNetworkAvailable() {
-        ConnectivityManager connectivityManager
-                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return activeNetworkInfo != null;
-    }
-
     public void generarLista(ArrayList<Video> videos){
         String[] titulos = new String[videos.size()];
         String[] fotos = new String[videos.size()];
@@ -221,15 +120,18 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
-
-    public void cargarMas(){
-        if(nextToken!=""){
-            cargarVideos("https://www.googleapis.com/youtube/v3/search?key=AIzaSyArBI9PaihSf2ShUV3zeQLby9ItDDNvJgE&channelId=UCYALMdLMd75Q7BTyRikYz5g&part=snippet,id&order=date&pageToken="+nextToken+"&maxResults=2");
-            lista.setStackFromBottom(true);
-            lista.setTranscriptMode(2);
-        }else{
-            esFinal=true;
+    public void anadirVideos(String cadena) throws JSONException {
+        StringTokenizer st = new StringTokenizer(cadena,"|");
+        while(st.hasMoreElements()){
+            Video video = new Video(st.nextElement().toString());
+            videos.add(video);
         }
     }
 
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null;
+    }
 }

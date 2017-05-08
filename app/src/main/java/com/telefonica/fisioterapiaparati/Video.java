@@ -1,5 +1,8 @@
 package com.telefonica.fisioterapiaparati;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Created by telefonica on 05/05/2017.
  */
@@ -25,6 +28,13 @@ public class Video {
         this.descripcion = descripcion;
         this.url = "https://www.youtube.com/watch?v="+videoID;
         this.imagen = imagen;
+    }
+    public Video(String cadenaVideoCompleto) throws JSONException {
+        JSONObject object = new JSONObject("{"+cadenaVideoCompleto+"}");
+        this.videoID = object.getString("videoID");
+        this.titulo = object.getString("titulo");
+        this.descripcion = object.getString("descripcion");
+        this.imagen = object.getString("imagen");
     }
 
     public String getVideoID() {
@@ -65,12 +75,11 @@ public class Video {
 
     @Override
     public String toString() {
-        return "Video{" +
-                "videoID='" + videoID + '\'' +
-                ", titulo='" + titulo + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", url='" + url + '\'' +
-                ", imagen='" + imagen + '\'' +
-                '}';
+        return
+                "videoID:'" + videoID + '\'' +
+                ", titulo:'" + titulo + '\'' +
+                ", descripcion:'" + descripcion + '\'' +
+                ", url:'" + url + '\'' +
+                ", imagen:'" + imagen + '\''+'}';
     }
 }
