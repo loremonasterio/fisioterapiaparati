@@ -12,15 +12,16 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="330dp"
+            android:layout_width="295dp"
             android:layout_height="match_parent"
             android:layout_gravity="left"
+            android:layout_marginRight="10dp"
             >
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                app:srcCompat="@drawable/índiceGrande"
+                app:srcCompat="@drawable/indicegrande"
                 android:id="@+id/imageView"
                 android:background="@android:color/transparent"/>
 
@@ -32,14 +33,14 @@
                 android:layout_marginTop="10dp"
                 android:textColorHint="#6eb974"
                 android:ems="10"
-                android:id="@+id/editText4" />
+                android:id="@+id/inputnombre" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="phone"
                 android:ems="10"
-                android:id="@+id/editText5"
+                android:id="@+id/inputtelefono"
                 android:hint="Teléfono"
                 android:layout_marginTop="10dp"
                 android:textColorHint="#6eb974"
@@ -47,21 +48,10 @@
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:ems="10"
-                android:id="@+id/editText6"
-                android:hint="Email"
-                android:textColorHint="#6eb974"
-                android:layout_marginTop="10dp"
-                />
-
-            <EditText
-                android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:inputType="textMultiLine"
                 android:ems="10"
-                android:id="@+id/editText7"
+                android:id="@+id/inputmensaje"
                 android:hint="Escribe aquí tu consulta."
                 android:textAlignment="center"
                 android:textColorHint="#6eb974"
@@ -82,7 +72,8 @@
                     android:textAllCaps="false"
                     android:background="@color/colorPrimary"
                     android:textColor="#FFF"
-                    android:layout_marginRight="5dp"/>
+                    android:layout_marginRight="5dp"
+                    android:onClick="enviar"/>
 
                 <Button
                     android:text="Borrar"
@@ -126,7 +117,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                app:srcCompat="@drawable/Youtube"
+                app:srcCompat="@drawable/youtube"
                 android:id="@+id/imageButton9"
                 android:background="@android:color/transparent"/>
 
@@ -141,16 +132,8 @@
             <ImageButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
-                app:srcCompat="@drawable/mail"
-                android:id="@+id/imageButton7"
-                android:background="@android:color/transparent"/>
-
-            <ImageButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"
-                app:srcCompat="@drawable/Facebook"
+                app:srcCompat="@drawable/facebook"
                 android:id="@+id/imageButton6"
                 android:background="@android:color/transparent"/>
         </LinearLayout>
