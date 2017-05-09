@@ -111,7 +111,8 @@
                 android:layout_marginBottom="30dp"
                 app:srcCompat="@drawable/twitter"
                 android:id="@+id/imageButton10"
-                android:background="@android:color/transparent"/>
+                android:background="@android:color/transparent"
+                android:onClick="lanzarTwitter"/>
 
             <ImageButton
                 android:layout_width="match_parent"

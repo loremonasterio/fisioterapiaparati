@@ -40,4 +40,18 @@ public class Contacto extends AppCompatActivity {
         startActivity(Intent.createChooser(emailIntent, "Enviar email..."));
     }
 
+    public void lanzarTwitter(View v){
+        Intent intent = null;
+        try {
+            // get the Twitter app if possible
+            this.getPackageManager().getPackageInfo("com.twitter.android", 0);
+            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("twitter://user?user_id=631135762"));
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        } catch (Exception e) {
+            // no Twitter app, revert to browser
+            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/Fisioparati"));
+        }
+        this.startActivity(intent);
+    }
+
 }
