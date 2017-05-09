@@ -7,8 +7,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 import com.felipecsl.gifimageview.library.GifImageView;
 
@@ -25,6 +25,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by telefonica on 05/05/2017.
@@ -36,6 +37,7 @@ public class SplashScreen extends AppCompatActivity {
     ArrayList<Video> videos = new ArrayList<Video>();
     private String nextToken = "";
     private String cadenaSP = "";
+    private TextView frase;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,24 +46,18 @@ public class SplashScreen extends AppCompatActivity {
             cargarVideos("https://www.googleapis.com/youtube/v3/search?key=AIzaSyArBI9PaihSf2ShUV3zeQLby9ItDDNvJgE&channelId=UCYALMdLMd75Q7BTyRikYz5g&part=snippet,id&order=date");
         }
         gif = (GifImageView) findViewById(R.id.gifSplash);
+        frase=(TextView) findViewById(R.id.frase);
 
 
         try{
-            InputStream inputStream = getAssets().open("gif2.gif");
+            InputStream inputStream = getAssets().open("giflogo.gif");
             byte[] bytes = IOUtils.toByteArray(inputStream);
             gif.setBytes(bytes);
             gif.startAnimation();
         }
         catch (IOException ex){
         }
-        /*
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                SplashScreen.this.startActivity(new Intent(SplashScreen.this,MainActivity.class));
-                SplashScreen.this.finish();
-            }
-        },5000);*/
+        cargarFrases();
     }
 
     public void cargarVideos(String url) {
@@ -163,5 +159,16 @@ public class SplashScreen extends AppCompatActivity {
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("CadenaVideos", cadenaSP);
         editor.commit();
+    }
+
+    private void cargarFrases(){
+        String[] frases = new String[4];
+        frases[0] = "Adaptándonos a ti";
+        frases[1] = "Sin esperas ni desplazamientos";
+        frases[2] = "De la manera más cómoda y segura";
+        frases[3] = "Comprometidos con una formación continua";
+        Random r = new Random();
+        int valorDado = r.nextInt(4);
+        frase.setText(frases[valorDado]);
     }
 }

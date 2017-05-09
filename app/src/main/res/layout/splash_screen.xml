@@ -10,6 +10,16 @@
         android:layout_width="wrap_content"
         android:layout_height="400dp"
         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:textColor="@color/colorPrimary"
+        android:text="Comprometidos con una formación continua"
+        android:layout_gravity="center"
+        android:id="@+id/frase"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:textStyle="bold"/>
 
 
 
