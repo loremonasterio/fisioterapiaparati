@@ -40,6 +40,12 @@ public class Contacto extends AppCompatActivity {
         startActivity(Intent.createChooser(emailIntent, "Enviar email..."));
     }
 
+    public void borrar(View v){
+        nombre.setText("");
+        telefono.setText("");
+        mensaje.setText("");
+    }
+
     public void lanzarTwitter(View v){
         Intent intent = null;
         try {
@@ -54,4 +60,37 @@ public class Contacto extends AppCompatActivity {
         this.startActivity(intent);
     }
 
+    public void lanzarFacebook(View v) {
+        Intent intent = null;
+        try {
+            this.getPackageManager().getPackageInfo("com.facebook.katana", 0);
+            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/466054160120444"));
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        } catch (Exception e) {
+            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/Fisioterapia-para-TI-466054160120444"));
+        }
+        this.startActivity(intent);
+    }
+
+    public void llamar(View v){
+        startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "686855186", null)));
+    }
+
+    public void lanzarYoutube(View v) {
+        Intent intent = null;
+        try {
+            this.getPackageManager().getPackageInfo("com.google.android.youtube", 0);
+            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/user/FisioterapiaparaTI"));
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        } catch (Exception e) {
+            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/user/FisioterapiaparaTI"));
+        }
+        this.startActivity(intent);
+    }
+
+    public void lanzarWeb(View v){
+        Intent intent = null;
+        intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.fisioterapiaparati.com/"));
+        this.startActivity(intent);
+    }
 }

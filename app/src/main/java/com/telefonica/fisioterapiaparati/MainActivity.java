@@ -103,8 +103,16 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent,
                                             View view, int position, long id) {
-                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube://" + videoIDS[position]));
-                        startActivity(intent);
+                        Intent intent = null;
+                        try {
+                            Context context = getApplicationContext();
+                            context.getPackageManager().getPackageInfo("com.google.android.youtube", 0);
+                            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube://" + videoIDS[position]));
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        } catch (Exception e) {
+                            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v="+videoIDS[position]));
+                        }
+                    startActivity(intent);
                     }
                 });
     }

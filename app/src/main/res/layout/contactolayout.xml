@@ -23,14 +23,15 @@
                 android:layout_height="50dp"
                 app:srcCompat="@drawable/indicegrande"
                 android:id="@+id/imageView"
-                android:background="@android:color/transparent"/>
+                android:background="@android:color/transparent"
+                android:layout_marginTop="20dp"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:hint="Nombre"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:textColorHint="#6eb974"
                 android:ems="10"
                 android:id="@+id/inputnombre" />
@@ -42,7 +43,7 @@
                 android:ems="10"
                 android:id="@+id/inputtelefono"
                 android:hint="Teléfono"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:textColorHint="#6eb974"
                 />
 
@@ -55,6 +56,7 @@
                 android:hint="Escribe aquí tu consulta."
                 android:textAlignment="center"
                 android:textColorHint="#6eb974"
+                android:layout_marginTop="20dp"
                 />
 
             <LinearLayout
@@ -72,7 +74,7 @@
                     android:textAllCaps="false"
                     android:background="@color/colorPrimary"
                     android:textColor="#FFF"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
                     android:onClick="enviar"/>
 
                 <Button
@@ -84,7 +86,8 @@
                     android:layout_weight="1"
                     android:background="@color/colorPrimary"
                     android:textColor="#FFF"
-                    android:layout_marginLeft="5dp"/>
+                    android:layout_marginLeft="10dp"
+                    android:onClick="borrar"/>
             </LinearLayout>
 
 
@@ -97,46 +100,50 @@
             android:orientation="vertical">
 
             <ImageButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="30dp"
-                app:srcCompat="@drawable/phone"
                 android:id="@+id/imageButton11"
-                android:background="@android:color/transparent"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:layout_marginTop="50dp"
+                android:background="@android:color/transparent"
+                android:onClick="llamar"
+                app:srcCompat="@drawable/phone" />
 
             <ImageButton
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="50dp"
                 app:srcCompat="@drawable/twitter"
                 android:id="@+id/imageButton10"
                 android:background="@android:color/transparent"
                 android:onClick="lanzarTwitter"/>
 
             <ImageButton
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="50dp"
                 app:srcCompat="@drawable/youtube"
                 android:id="@+id/imageButton9"
-                android:background="@android:color/transparent"/>
+                android:background="@android:color/transparent"
+                android:onClick="lanzarYoutube"/>
 
             <ImageButton
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="50dp"
                 app:srcCompat="@drawable/web"
                 android:id="@+id/imageButton8"
-                android:background="@android:color/transparent"/>
+                android:background="@android:color/transparent"
+                android:onClick="lanzarWeb"/>
 
             <ImageButton
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"
                 app:srcCompat="@drawable/facebook"
                 android:id="@+id/imageButton6"
-                android:background="@android:color/transparent"/>
+                android:background="@android:color/transparent"
+                android:onClick="lanzarFacebook"/>
         </LinearLayout>
     </LinearLayout>
 
