@@ -134,7 +134,7 @@ public class SplashScreen extends AppCompatActivity {
                 cargarVideos("https://www.googleapis.com/youtube/v3/search?key=AIzaSyArBI9PaihSf2ShUV3zeQLby9ItDDNvJgE&channelId=UCYALMdLMd75Q7BTyRikYz5g&part=snippet,id&order=date&pageToken=" + nextToken);
             }else{
                 pasarSP();
-                SplashScreen.this.startActivity(new Intent(SplashScreen.this,MainActivity.class));
+                SplashScreen.this.startActivity(new Intent(SplashScreen.this,Calendario.class));
                 SplashScreen.this.finish();
             }
         }

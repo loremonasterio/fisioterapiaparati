@@ -20,11 +20,11 @@ import java.util.StringTokenizer;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<Video> videos = new ArrayList<Video>();
-    String[] tituloSinInternet = {"Se necesita conexión a internet para acceder a los vídeos"};
-    String[] fotoSinInternet = {"https://static.parastorage.com/services/santa/1.2207.10/static/images/video/not-found.png"};
+    private ArrayList<Video> videos = new ArrayList<Video>();
+    private String[] tituloSinInternet = {"Se necesita conexión a internet para acceder a los vídeos"};
+    private String[] fotoSinInternet = {"https://static.parastorage.com/services/santa/1.2207.10/static/images/video/not-found.png"};
     private ListView lista;
-    String cadenaVideos = "";
+    private String cadenaVideos = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

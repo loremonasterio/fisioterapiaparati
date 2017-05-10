@@ -1,9 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF"
     android:weightSum="1">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="5dp"
+            android:id="@+id/imagen1"
+            app:srcCompat="@drawable/no_image"/>
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="5dp"
+            android:id="@+id/imagen2"
+            app:srcCompat="@drawable/no_image"/>
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="5dp"
+            android:id="@+id/imagen3"
+            app:srcCompat="@drawable/no_image"/>
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="5dp"
+            android:id="@+id/imagen4"
+            app:srcCompat="@drawable/no_image"/>
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:id="@+id/imagen5"
+            app:srcCompat="@drawable/no_image"/>
+
+    </LinearLayout>
 
 
     <TextView
@@ -12,7 +49,6 @@
         android:layout_height="wrap_content"
         android:text="Días totales del ejercicio"
         android:gravity="center"
-        android:layout_marginTop="10dp"
         android:textStyle="bold"
         android:textColor="@color/colorPrimary"
         />
@@ -85,5 +121,21 @@
         android:max="5"
         android:progress="1"
         android:layout_marginTop="10dp"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="253dp"
+        android:id="@+id/listaVideos" />
+
+    <Button
+        android:id="@+id/rutina"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:text="Crear rutina"
+        android:textAllCaps="false"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFF"
+        android:onClick="crearRutina"/>
 
 </LinearLayout>

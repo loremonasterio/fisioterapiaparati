@@ -50,4 +50,14 @@ public class Ejercicio {
     public void setVideos(ArrayList<Video> videos) {
         this.videos = videos;
     }
+
+    @Override
+    public String toString() {
+        return "Ejercicio{" +
+                "diasTotales=" + diasTotales +
+                ", diasSemanales=" + diasSemanales +
+                ", vecesDiarias=" + vecesDiarias +
+                ", videos=" + videos +
+                '}';
+    }
 }
