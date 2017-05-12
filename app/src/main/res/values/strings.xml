@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Fisioterapia Para TI</string>
     <string name="action_settings">Settings</string>
-    <item type="id" name="tag_video"/>
-    <item type="id" name="tag_video_id"/>
+    <item name="tag_video" type="id" />
+    <item name="tag_video_id" type="id" />
+    <string name="title_activity_patologias">Patologias</string>
 </resources>

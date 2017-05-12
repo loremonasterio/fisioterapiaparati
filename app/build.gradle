@@ -24,6 +24,7 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile files('libs/joda-time-2.9.9.jar')
     compile 'com.googlecode.json-simple:json-simple:1.1'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
@@ -31,5 +32,4 @@ dependencies {
     compile 'org.apache.directory.studio:org.apache.commons.io:2.4'
     compile 'com.felipecsl:gifimageview:2.1.0'
     testCompile 'junit:junit:4.12'
-    compile files('libs/joda-time-2.9.9.jar')
 }

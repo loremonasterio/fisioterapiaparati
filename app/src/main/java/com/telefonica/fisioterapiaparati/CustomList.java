@@ -6,7 +6,6 @@ package com.telefonica.fisioterapiaparati;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,22 +33,10 @@ public class CustomList extends ArrayAdapter<String>{
         this.imageId = imageId;
 
     }
-    public static void setSelectedIndex(int ind) {
-        selectedIndex.add(ind);
-    }
-
     @Override
     public View getView(int position, View view, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
         View rowView= inflater.inflate(R.layout.list_single, null, true);
-        if(selectedIndex.size()>0){
-            for(int i = 0; i < selectedIndex.size(); i++){
-                if(position == selectedIndex.get(i)){
-                    rowView.setBackgroundColor(Color.parseColor("#6eb974"));
-                    rowView.setClickable(true);
-                }
-            }
-        }
         TextView txtTitle = (TextView) rowView.findViewById(R.id.txt);
         ImageView imageView = (ImageView) rowView.findViewById(R.id.img);
         txtTitle.setText(web[position]);
@@ -57,6 +44,8 @@ public class CustomList extends ArrayAdapter<String>{
 
         return rowView;
     }
+
+
 
     public class ImageLoadTask extends AsyncTask<Void, Void, Bitmap> {
 

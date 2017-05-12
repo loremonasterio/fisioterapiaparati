@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -30,7 +29,7 @@ public class Calendario extends AppCompatActivity {
 
     private ArrayList<Video> videos = new ArrayList<Video>();
     private ArrayList<Video> videosRutina = new ArrayList<Video>();
-    private ArrayList<View> filasLista = new ArrayList<View>();
+    private ArrayList<String> videosAnadidos = new ArrayList<String>();
     private SeekBar diasTotales;
     private SeekBar diasSemanales;
     private SeekBar vecesDiarias;
@@ -44,7 +43,6 @@ public class Calendario extends AppCompatActivity {
     private ImageView imagen4;
     private ImageView imagen5;
     private String cadenaVideos = "";
-    private int[] posicionesFilas = new int[5];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,84 +143,69 @@ public class Calendario extends AppCompatActivity {
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        adapter.setSelectedIndex(position);
-                        if(imagen1.getTag(R.id.tag_video)!="ocupado0"){
+                        if(imagen1.getTag(R.id.tag_video)!="ocupado0" && !videosAnadidos.contains(videoIDS[position])){
+                            videosAnadidos.add(videoIDS[position]);
                             new Calendario.ImageLoadTask(fotos[position], imagen1).execute();
                             imagen1.setTag(R.id.tag_video,"ocupado0");
                             Video video = new Video(videoIDS[position], titulos[position], descripciones[position], fotos[position]);
                             imagen1.setTag(R.id.tag_video_id,video.getVideoID());
                             videosRutina.add(video);
-                            view.setSelected(true);
-                            view.setBackgroundColor(Color.parseColor("#6eb974"));
-                            view.setClickable(true);
                             view.setTag(R.id.tag_video,"ocupado0");
                             view.setTag(R.id.tag_video_id,position);
-                            posicionesFilas[0]=position;
-                            filasLista.add(view);
                             Toast.makeText(Calendario.this, "Video añadido, para eliminarlo pincha sobre su miniatura en la parte superior",Toast.LENGTH_SHORT).show();
-                        }else if(imagen2.getTag(R.id.tag_video)!="ocupado1"){
+                        }else if(imagen2.getTag(R.id.tag_video)!="ocupado1" && !videosAnadidos.contains(videoIDS[position])){
+                            videosAnadidos.add(videoIDS[position]);
                             new Calendario.ImageLoadTask(fotos[position], imagen2).execute();
                             imagen2.setTag(R.id.tag_video,"ocupado1");
                             Video video = new Video(videoIDS[position], titulos[position], descripciones[position], fotos[position]);
                             imagen2.setTag(R.id.tag_video_id,video.getVideoID());
                             videosRutina.add(video);
-                            view.setBackgroundColor(Color.parseColor("#6eb974"));
-                            view.setClickable(true);
                             view.setTag(R.id.tag_video,"ocupado1");
                             view.setTag(R.id.tag_video_id,position);
-                            posicionesFilas[1]=position;
-                            filasLista.add(view);
                             Toast.makeText(Calendario.this, "Video añadido, para eliminarlo pincha sobre su miniatura en la parte superior",Toast.LENGTH_SHORT).show();
-                        }else if(imagen3.getTag(R.id.tag_video)!="ocupado2"){
+                        }else if(imagen3.getTag(R.id.tag_video)!="ocupado2" && !videosAnadidos.contains(videoIDS[position])){
+                            videosAnadidos.add(videoIDS[position]);
                             new Calendario.ImageLoadTask(fotos[position], imagen3).execute();
                             imagen3.setTag(R.id.tag_video,"ocupado2");
                             Video video = new Video(videoIDS[position], titulos[position], descripciones[position], fotos[position]);
                             imagen3.setTag(R.id.tag_video_id,video.getVideoID());
                             videosRutina.add(video);
-                            view.setBackgroundColor(Color.parseColor("#6eb974"));
-                            view.setClickable(true);
                             view.setTag(R.id.tag_video,"ocupado2");
                             view.setTag(R.id.tag_video_id,position);
-                            posicionesFilas[2]=position;
-                            filasLista.add(view);
                             Toast.makeText(Calendario.this, "Video añadido, para eliminarlo pincha sobre su miniatura en la parte superior",Toast.LENGTH_SHORT).show();
-                        }else if(imagen4.getTag(R.id.tag_video)!="ocupado3"){
+                        }else if(imagen4.getTag(R.id.tag_video)!="ocupado3" && !videosAnadidos.contains(videoIDS[position])){
+                            videosAnadidos.add(videoIDS[position]);
                             new Calendario.ImageLoadTask(fotos[position], imagen4).execute();
                             imagen4.setTag(R.id.tag_video,"ocupado3");
                             Video video = new Video(videoIDS[position], titulos[position], descripciones[position], fotos[position]);
                             imagen4.setTag(R.id.tag_video_id,video.getVideoID());
                             videosRutina.add(video);
-                            view.setBackgroundColor(Color.parseColor("#6eb974"));
-                            view.setClickable(true);
                             view.setTag(R.id.tag_video,"ocupado3");
                             view.setTag(R.id.tag_video_id,position);
-                            posicionesFilas[3]=position;
-                            filasLista.add(view);
                             Toast.makeText(Calendario.this, "Video añadido, para eliminarlo pincha sobre su miniatura en la parte superior",Toast.LENGTH_SHORT).show();
-                        }else if(imagen5.getTag(R.id.tag_video)!="ocupado4"){
+                        }else if(imagen5.getTag(R.id.tag_video)!="ocupado4" && !videosAnadidos.contains(videoIDS[position])){
+                            videosAnadidos.add(videoIDS[position]);
                             new Calendario.ImageLoadTask(fotos[position], imagen5).execute();
                             imagen5.setTag(R.id.tag_video,"ocupado4");
                             Video video = new Video(videoIDS[position], titulos[position], descripciones[position], fotos[position]);
                             imagen5.setTag(R.id.tag_video_id,video.getVideoID());
                             videosRutina.add(video);
-                            view.setBackgroundColor(Color.parseColor("#6eb974"));
-                            view.setClickable(true);
                             view.setTag(R.id.tag_video,"ocupado4");
                             view.setTag(R.id.tag_video_id,position);
-                            posicionesFilas[4]=position;
-                            filasLista.add(view);
                             Toast.makeText(Calendario.this, "Video añadido, para eliminarlo pincha sobre su miniatura en la parte superior",Toast.LENGTH_SHORT).show();
                         }else{
-                            AlertDialog alertDialog = new AlertDialog.Builder(Calendario.this,R.style.Theme_AppCompat_Light_Dialog_Alert).create();
-                            alertDialog.setTitle("No se pueden añadir más vídeos");
-                            alertDialog.setMessage("El máximo de vídeos para añadir es 5");
-                            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Aceptar",
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            dialog.dismiss();
-                                        }
-                                    });
-                            alertDialog.show();
+                            if(videosAnadidos.size()==5){
+                                AlertDialog alertDialog = new AlertDialog.Builder(Calendario.this,R.style.Theme_AppCompat_Light_Dialog_Alert).create();
+                                alertDialog.setTitle("No se pueden añadir más vídeos");
+                                alertDialog.setMessage("El máximo de vídeos para añadir es 5");
+                                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Aceptar",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.dismiss();
+                                            }
+                                        });
+                                alertDialog.show();
+                            }
                         }
                     }
                 });
@@ -277,15 +260,12 @@ public class Calendario extends AppCompatActivity {
                         videosRutina.remove(i);
                     }
                 }
-                for (int i = 0; i < filasLista.size(); i++){
-                    if(filasLista.get(i).getTag(R.id.tag_video).equals("ocupado0")){
-                        filasLista.remove(i);
+                for (int i = 0; i < videosAnadidos.size(); i++){
+                    if(videosAnadidos.get(i).equals(v.getTag(R.id.tag_video_id))){
+                        videosAnadidos.remove(i);
                     }
                 }
                 v.setTag(R.id.tag_video,"");
-                View itemLista0 = getViewByPosition(posicionesFilas[0],lista);
-                itemLista0.setClickable(false);
-                itemLista0.setBackgroundColor(Color.parseColor("#efefef"));
                 break;
             case "ocupado1":
                 imagen2.setImageResource(R.drawable.no_image);
@@ -294,15 +274,12 @@ public class Calendario extends AppCompatActivity {
                         videosRutina.remove(i);
                     }
                 }
-                for (int i = 0; i < filasLista.size(); i++){
-                    if(filasLista.get(i).getTag(R.id.tag_video).equals("ocupado1")){
-                        filasLista.remove(i);
+                for (int i = 0; i < videosAnadidos.size(); i++){
+                    if(videosAnadidos.get(i).equals(v.getTag(R.id.tag_video_id))){
+                        videosAnadidos.remove(i);
                     }
                 }
                 v.setTag(R.id.tag_video,"");
-                View itemLista1 = getViewByPosition(posicionesFilas[1],lista);
-                itemLista1.setClickable(false);
-                itemLista1.setBackgroundColor(Color.parseColor("#efefef"));
                 break;
             case "ocupado2":
                 imagen3.setImageResource(R.drawable.no_image);
@@ -311,15 +288,12 @@ public class Calendario extends AppCompatActivity {
                         videosRutina.remove(i);
                     }
                 }
-                for (int i = 0; i < filasLista.size(); i++){
-                    if(filasLista.get(i).getTag(R.id.tag_video).equals("ocupado2")){
-                        filasLista.remove(i);
+                for (int i = 0; i < videosAnadidos.size(); i++){
+                    if(videosAnadidos.get(i).equals(v.getTag(R.id.tag_video_id))){
+                        videosAnadidos.remove(i);
                     }
                 }
                 v.setTag(R.id.tag_video,"");
-                View itemLista2 = getViewByPosition(posicionesFilas[2],lista);
-                itemLista2.setClickable(false);
-                itemLista2.setBackgroundColor(Color.parseColor("#efefef"));
                 break;
             case "ocupado3":
                 imagen4.setImageResource(R.drawable.no_image);
@@ -328,15 +302,12 @@ public class Calendario extends AppCompatActivity {
                         videosRutina.remove(i);
                     }
                 }
-                for (int i = 0; i < filasLista.size(); i++){
-                    if(filasLista.get(i).getTag(R.id.tag_video).equals("ocupado3")){
-                        filasLista.remove(i);
+                for (int i = 0; i < videosAnadidos.size(); i++){
+                    if(videosAnadidos.get(i).equals(v.getTag(R.id.tag_video_id))){
+                        videosAnadidos.remove(i);
                     }
                 }
                 v.setTag(R.id.tag_video,"");
-                View itemLista3 = getViewByPosition(posicionesFilas[3],lista);
-                itemLista3.setClickable(false);
-                itemLista3.setBackgroundColor(Color.parseColor("#efefef"));
                 break;
             case "ocupado4":
                 imagen5.setImageResource(R.drawable.no_image);
@@ -345,14 +316,11 @@ public class Calendario extends AppCompatActivity {
                         videosRutina.remove(i);
                     }
                 }
-                for (int i = 0; i < filasLista.size(); i++){
-                    if(filasLista.get(i).getTag(R.id.tag_video).equals("ocupado4")){
-                        filasLista.remove(i);
+                for (int i = 0; i < videosAnadidos.size(); i++){
+                    if(videosAnadidos.get(i).equals(v.getTag(R.id.tag_video_id))){
+                        videosAnadidos.remove(i);
                     }
                 }
-                View itemLista4 = getViewByPosition(posicionesFilas[4],lista);
-                itemLista4.setClickable(false);
-                itemLista4.setBackgroundColor(Color.parseColor("#efefef"));
                 v.setTag(R.id.tag_video,"");
                 break;
         }

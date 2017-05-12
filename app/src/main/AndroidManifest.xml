@@ -22,9 +22,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".Contacto"></activity>
-        <activity android:name=".Calendario"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Contacto" />
+        <activity android:name=".Calendario" />
+        <activity
+            android:name=".Patologias"
+            android:label="@string/title_activity_patologias"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
