@@ -121,7 +121,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="40dp"
                 android:background="@android:color/transparent"
-                android:onClick="llamar"
+                android:onClick="lanzarTwitter"
                 app:srcCompat="@drawable/twitter512"
                 android:scaleType="fitCenter"/>
 
@@ -133,7 +133,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="40dp"
                 android:background="@android:color/transparent"
-                android:onClick="llamar"
+                android:onClick="lanzarYoutube"
                 app:srcCompat="@drawable/youtube512"
                 android:scaleType="fitCenter"/>
 
@@ -145,7 +145,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="40dp"
                 android:background="@android:color/transparent"
-                android:onClick="llamar"
+                android:onClick="lanzarWeb"
                 app:srcCompat="@drawable/web512"
                 android:scaleType="fitCenter"/>
 
@@ -157,7 +157,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="40dp"
                 android:background="@android:color/transparent"
-                android:onClick="llamar"
+                android:onClick="lanzarYoutube"
                 app:srcCompat="@drawable/facebook512"
                 android:scaleType="fitCenter"/>
         </LinearLayout>

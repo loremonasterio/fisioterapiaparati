@@ -15,20 +15,22 @@
         <activity
             android:name=".SplashScreen"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Contacto" />
-        <activity android:name=".Calendario" />
+        <activity android:name=".MainActivity" android:screenOrientation="portrait" />
+        <activity android:name=".Contacto" android:screenOrientation="portrait" />
+        <activity android:name=".Calendario" android:screenOrientation="portrait" />
         <activity
             android:name=".Patologias"
             android:label="@string/title_activity_patologias"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
