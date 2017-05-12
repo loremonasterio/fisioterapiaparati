@@ -1,5 +1,6 @@
 package com.telefonica.fisioterapiaparati;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,17 +14,27 @@ public class Patologias extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patologias);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+    }
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+    public void menuVideos(View v){
+        Intent intent = new Intent(this, MainActivity.class);
+        this.startActivity(intent);
+        this.finish();
+    }
+    public void menuPatologias(View v){
+        Intent intent = new Intent(this, Patologias.class);
+        this.startActivity(intent);
+        this.finish();
+    }
+    public void menuCalendario(View v){
+        Intent intent = new Intent(this, Calendario.class);
+        this.startActivity(intent);
+        this.finish();
+    }
+    public void menuContacto(View v){
+        Intent intent = new Intent(this, Contacto.class);
+        this.startActivity(intent);
+        this.finish();
     }
 
 }

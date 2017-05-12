@@ -4,16 +4,20 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="500dp">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="295dp"
-            android:layout_height="match_parent"
+            android:layout_height="491dp"
             android:layout_gravity="left"
             android:layout_marginRight="10dp"
             >
@@ -89,100 +93,116 @@
                     android:layout_marginLeft="10dp"
                     android:onClick="borrar"/>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:orientation="horizontal"
-                android:paddingTop="10dp">
-                <ImageButton
-                    android:id="@+id/imageButton5"
-                    android:layout_width="fill_parent"
-                    android:layout_weight="1"
-                    android:layout_height="50dp"
-                    app:srcCompat="@drawable/youtubemenu100"
-                    android:scaleType="fitCenter"
-                    android:background="@android:color/transparent"/>
-                <ImageButton
-                    android:id="@+id/imageButton56"
-                    android:layout_width="fill_parent"
-                    android:layout_weight="1"
-                    android:layout_height="50dp"
-                    app:srcCompat="@drawable/salud100"
-                    android:scaleType="fitCenter"
-                    android:background="@android:color/transparent"/>
-                <ImageButton
-                    android:id="@+id/imageButton7"
-                    android:layout_width="fill_parent"
-                    android:layout_weight="1"
-                    android:layout_height="50dp"
-                    app:srcCompat="@drawable/calendario100"
-                    android:scaleType="fitCenter"
-                    android:background="@android:color/transparent"/>
-                <ImageButton
-                    android:id="@+id/imageButton98"
-                    android:layout_width="fill_parent"
-                    android:layout_weight="1"
-                    android:layout_height="50dp"
-                    app:srcCompat="@drawable/contactomenu100"
-                    android:scaleType="fitCenter"
-                    android:background="@android:color/transparent"/>
-            </LinearLayout>
-
-
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
+            android:layout_width="58dp"
+            android:layout_height="502dp"
             android:layout_gravity="right"
             android:orientation="vertical">
 
             <ImageButton
                 android:id="@+id/imageButton11"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp"
-                android:layout_marginTop="50dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="40dp"
                 android:background="@android:color/transparent"
                 android:onClick="llamar"
-                app:srcCompat="@drawable/phone" />
+                app:srcCompat="@drawable/phone512"
+                android:scaleType="fitCenter"/>
 
             <ImageButton
+                android:id="@+id/imageButtonTwitter"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp"
-                app:srcCompat="@drawable/twitter"
-                android:id="@+id/imageButton10"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="40dp"
                 android:background="@android:color/transparent"
-                android:onClick="lanzarTwitter"/>
+                android:onClick="llamar"
+                app:srcCompat="@drawable/twitter512"
+                android:scaleType="fitCenter"/>
 
             <ImageButton
+                android:id="@+id/imageButtonYoutube"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp"
-                app:srcCompat="@drawable/youtube"
-                android:id="@+id/imageButton9"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="40dp"
                 android:background="@android:color/transparent"
-                android:onClick="lanzarYoutube"/>
+                android:onClick="llamar"
+                app:srcCompat="@drawable/youtube512"
+                android:scaleType="fitCenter"/>
 
             <ImageButton
+                android:id="@+id/imageButtonWeb"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp"
-                app:srcCompat="@drawable/web"
-                android:id="@+id/imageButton8"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="40dp"
                 android:background="@android:color/transparent"
-                android:onClick="lanzarWeb"/>
+                android:onClick="llamar"
+                app:srcCompat="@drawable/web512"
+                android:scaleType="fitCenter"/>
 
             <ImageButton
+                android:id="@+id/imageButtonFacebook"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="40dp"
-                app:srcCompat="@drawable/facebook"
-                android:id="@+id/imageButton6"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="40dp"
                 android:background="@android:color/transparent"
-                android:onClick="lanzarFacebook"/>
+                android:onClick="llamar"
+                app:srcCompat="@drawable/facebook512"
+                android:scaleType="fitCenter"/>
         </LinearLayout>
     </LinearLayout>
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
+            <ImageButton
+                android:id="@+id/imageButton5"
+                android:layout_width="fill_parent"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/youtubemenu100"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:onClick="menuVideos"/>
+            <ImageButton
+                android:id="@+id/imageButton56"
+                android:layout_width="fill_parent"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/salud100"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:onClick="menuPatologias"/>
+            <ImageButton
+                android:id="@+id/imageButton7"
+                android:layout_width="fill_parent"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/calendario100"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:onClick="menuCalendario"/>
+            <ImageButton
+                android:id="@+id/imageButton98"
+                android:layout_width="fill_parent"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/contactomenu100"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:onClick="menuContacto"/>
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

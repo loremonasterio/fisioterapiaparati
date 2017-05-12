@@ -134,7 +134,7 @@ public class SplashScreen extends AppCompatActivity {
                 cargarVideos("https://www.googleapis.com/youtube/v3/search?key=AIzaSyArBI9PaihSf2ShUV3zeQLby9ItDDNvJgE&channelId=UCYALMdLMd75Q7BTyRikYz5g&part=snippet,id&order=date&pageToken=" + nextToken);
             }else{
                 pasarSP();
-                SplashScreen.this.startActivity(new Intent(SplashScreen.this,Contacto.class));
+                SplashScreen.this.startActivity(new Intent(SplashScreen.this,MainActivity.class));
                 SplashScreen.this.finish();
             }
         }
@@ -168,7 +168,7 @@ public class SplashScreen extends AppCompatActivity {
         frases[2] = "De la manera más cómoda y segura";
         frases[3] = "Comprometidos con una formación continua";
         Random r = new Random();
-        int valorDado = r.nextInt(4);
+        int valorDado = r.nextInt(frases.length);
         frase.setText(frases[valorDado]);
     }
 }

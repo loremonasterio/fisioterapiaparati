@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import org.json.JSONException;
@@ -40,17 +41,6 @@ public class MainActivity extends AppCompatActivity {
         }
         generarLista(videos);
 
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
         if(!isNetworkAvailable()) {
             CustomList adapter = new CustomList(MainActivity.this, tituloSinInternet, fotoSinInternet);
             lista.setAdapter(adapter);
@@ -62,31 +52,6 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
     }
 
-    /*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-    */
-
-    /*
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-    */
     public void generarLista(ArrayList<Video> videos){
         String[] titulos = new String[videos.size()];
         String[] fotos = new String[videos.size()];
@@ -129,5 +94,26 @@ public class MainActivity extends AppCompatActivity {
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null;
+    }
+
+    public void menuVideos(View v){
+        Intent intent = new Intent(this, MainActivity.class);
+        this.startActivity(intent);
+        this.finish();
+    }
+    public void menuPatologias(View v){
+        Intent intent = new Intent(this, Patologias.class);
+        this.startActivity(intent);
+        this.finish();
+    }
+    public void menuCalendario(View v){
+        Intent intent = new Intent(this, Calendario.class);
+        this.startActivity(intent);
+        this.finish();
+    }
+    public void menuContacto(View v){
+        Intent intent = new Intent(this, Contacto.class);
+        this.startActivity(intent);
+        this.finish();
     }
 }

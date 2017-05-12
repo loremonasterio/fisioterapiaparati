@@ -11,8 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="501dp" />
 
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -25,7 +23,8 @@
             android:layout_height="50dp"
             app:srcCompat="@drawable/youtubemenu100"
             android:scaleType="fitCenter"
-            android:background="@android:color/transparent"/>
+            android:background="@android:color/transparent"
+            android:onClick="menuVideos"/>
         <ImageButton
             android:id="@+id/imageButton6"
             android:layout_width="fill_parent"
@@ -33,7 +32,8 @@
             android:layout_height="50dp"
             app:srcCompat="@drawable/salud100"
             android:scaleType="fitCenter"
-            android:background="@android:color/transparent"/>
+            android:background="@android:color/transparent"
+            android:onClick="menuPatologias"/>
         <ImageButton
             android:id="@+id/imageButton7"
             android:layout_width="fill_parent"
@@ -41,7 +41,8 @@
             android:layout_height="50dp"
             app:srcCompat="@drawable/calendario100"
             android:scaleType="fitCenter"
-            android:background="@android:color/transparent"/>
+            android:background="@android:color/transparent"
+            android:onClick="menuCalendario"/>
         <ImageButton
             android:id="@+id/imageButton8"
             android:layout_width="fill_parent"
@@ -49,7 +50,8 @@
             android:layout_height="50dp"
             app:srcCompat="@drawable/contactomenu100"
             android:scaleType="fitCenter"
-            android:background="@android:color/transparent"/>
+            android:background="@android:color/transparent"
+            android:onClick="menuContacto"/>
     </LinearLayout>
 
 </LinearLayout>

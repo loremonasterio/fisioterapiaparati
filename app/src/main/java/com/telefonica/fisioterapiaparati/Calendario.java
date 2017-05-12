@@ -2,6 +2,7 @@ package com.telefonica.fisioterapiaparati;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -336,5 +337,27 @@ public class Calendario extends AppCompatActivity {
             final int childIndex = pos - firstListItemPosition;
             return listView.getChildAt(childIndex);
         }
+    }
+
+
+    public void menuVideos(View v){
+        Intent intent = new Intent(this, MainActivity.class);
+        this.startActivity(intent);
+        this.finish();
+    }
+    public void menuPatologias(View v){
+        Intent intent = new Intent(this, Patologias.class);
+        this.startActivity(intent);
+        this.finish();
+    }
+    public void menuCalendario(View v){
+        Intent intent = new Intent(this, Calendario.class);
+        this.startActivity(intent);
+        this.finish();
+    }
+    public void menuContacto(View v){
+        Intent intent = new Intent(this, Contacto.class);
+        this.startActivity(intent);
+        this.finish();
     }
 }
