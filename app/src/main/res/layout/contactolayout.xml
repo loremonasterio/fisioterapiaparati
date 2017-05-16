@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_weight="100">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,6 +21,7 @@
             android:layout_height="491dp"
             android:layout_gravity="left"
             android:layout_marginRight="10dp"
+            android:layout_weight="90"
             >
 
             <ImageView
@@ -157,14 +159,14 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="40dp"
                 android:background="@android:color/transparent"
-                android:onClick="lanzarYoutube"
+                android:onClick="lanzarFacebook"
                 app:srcCompat="@drawable/facebook512"
                 android:scaleType="fitCenter"/>
         </LinearLayout>
     </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="fill_parent"
             android:orientation="horizontal"
             android:paddingTop="10dp">
             <ImageButton
