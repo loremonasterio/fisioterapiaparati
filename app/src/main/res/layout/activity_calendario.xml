@@ -52,7 +52,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Días totales del ejercicio"
+        android:text="Semanas totales de salud para TI"
         android:gravity="center"
         android:textStyle="bold"
         android:textColor="@color/colorPrimary"
@@ -78,7 +78,7 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sesiones semanales para realizar el ejercicio"
+        android:text="Días a la semana de salud para TI"
         android:gravity="center"
         android:layout_marginTop="5dp"
         android:textStyle="bold"
@@ -104,7 +104,7 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Veces diarias a realizar el ejercicio"
+        android:text="Sesiones de salud diarias para TI"
         android:gravity="center"
         android:layout_marginTop="5dp"
         android:textStyle="bold"
@@ -129,7 +129,7 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="201dp"
+        android:layout_height="224dp"
         android:id="@+id/listaVideos" />
 
     <Button

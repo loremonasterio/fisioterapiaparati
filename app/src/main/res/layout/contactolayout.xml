@@ -11,173 +11,175 @@
         android:orientation="vertical">
 
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="500dp">
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="295dp"
-            android:layout_height="491dp"
-            android:layout_gravity="left"
-            android:layout_marginRight="10dp"
-            android:layout_weight="90"
-            >
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="500dp">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="295dp"
+                android:layout_height="491dp"
+                android:layout_gravity="left"
+                android:layout_marginRight="10dp"
+                android:layout_weight="90"
+                >
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                app:srcCompat="@drawable/indicegrande"
-                android:id="@+id/imageView"
-                android:background="@android:color/transparent"
-                android:layout_marginTop="20dp"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    app:srcCompat="@drawable/indicegrande"
+                    android:id="@+id/imageView"
+                    android:background="@android:color/transparent"
+                    android:layout_marginTop="20dp"/>
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:hint="Nombre"
-                android:layout_marginTop="20dp"
-                android:textColorHint="#6eb974"
-                android:ems="10"
-                android:id="@+id/inputnombre" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:hint="Nombre"
+                    android:layout_marginTop="20dp"
+                    android:textColorHint="#6eb974"
+                    android:ems="10"
+                    android:id="@+id/inputnombre" />
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="phone"
-                android:ems="10"
-                android:id="@+id/inputtelefono"
-                android:hint="Teléfono"
-                android:layout_marginTop="20dp"
-                android:textColorHint="#6eb974"
-                />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone"
+                    android:ems="10"
+                    android:id="@+id/inputtelefono"
+                    android:hint="Teléfono"
+                    android:layout_marginTop="20dp"
+                    android:textColorHint="#6eb974"
+                    />
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="211dp"
-                android:inputType="textMultiLine"
-                android:ems="10"
-                android:id="@+id/inputmensaje"
-                android:hint="Escribe aquí tu consulta."
-                android:textAlignment="center"
-                android:textColorHint="#6eb974"
-                android:layout_marginTop="20dp"
-                />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="211dp"
+                    android:inputType="textMultiLine"
+                    android:ems="10"
+                    android:id="@+id/inputmensaje"
+                    android:hint="Escribe aquí tu consulta."
+                    android:textAlignment="center"
+                    android:textColorHint="#6eb974"
+                    android:layout_marginTop="20dp"
+                    />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:layout_height="50dp">
+
+                    <Button
+                        android:text="Enviar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/button6"
+                        android:layout_weight="1"
+                        android:textAllCaps="false"
+                        android:background="@color/colorPrimary"
+                        android:textColor="#FFF"
+                        android:layout_marginLeft="5dp"
+                        android:onClick="enviar"/>
+
+                    <Button
+                        android:text="Borrar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/button5"
+                        android:textAllCaps="false"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimary"
+                        android:textColor="#FFF"
+                        android:layout_marginLeft="10dp"
+                        android:onClick="borrar"/>
+                </LinearLayout>
+            </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_marginTop="15dp"
-                android:layout_height="50dp">
+                android:layout_width="58dp"
+                android:layout_height="502dp"
+                android:layout_gravity="right"
+                android:orientation="vertical">
 
-                <Button
-                    android:text="Enviar"
+                <ImageButton
+                    android:id="@+id/imageButtonYoutube"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/button6"
+                    android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:textAllCaps="false"
-                    android:background="@color/colorPrimary"
-                    android:textColor="#FFF"
-                    android:layout_marginLeft="5dp"
-                    android:onClick="enviar"/>
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="40dp"
+                    android:background="@android:color/transparent"
+                    android:onClick="lanzarYoutube"
+                    app:srcCompat="@drawable/youtube512"
+                    android:scaleType="fitCenter"/>
 
-                <Button
-                    android:text="Borrar"
+                <ImageButton
+                    android:id="@+id/imageButtonFacebook"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/button5"
-                    android:textAllCaps="false"
+                    android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="@color/colorPrimary"
-                    android:textColor="#FFF"
-                    android:layout_marginLeft="10dp"
-                    android:onClick="borrar"/>
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="40dp"
+                    android:background="@android:color/transparent"
+                    android:onClick="lanzarFacebook"
+                    app:srcCompat="@drawable/facebook512"
+                    android:scaleType="fitCenter"/>
+
+                <ImageButton
+                    android:id="@+id/imageButtonTwitter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="40dp"
+                    android:background="@android:color/transparent"
+                    android:onClick="lanzarTwitter"
+                    app:srcCompat="@drawable/twitter512"
+                    android:scaleType="fitCenter"/>
+
+                <ImageButton
+                    android:id="@+id/imageButtonWeb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="40dp"
+                    android:background="@android:color/transparent"
+                    android:onClick="lanzarWeb"
+                    app:srcCompat="@drawable/web512"
+                    android:scaleType="fitCenter"/>
+
+                <ImageButton
+                    android:id="@+id/imageButton11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="40dp"
+                    android:background="@android:color/transparent"
+                    android:onClick="llamar"
+                    app:srcCompat="@drawable/phone512"
+                    android:scaleType="fitCenter"/>
+
             </LinearLayout>
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="58dp"
-            android:layout_height="502dp"
-            android:layout_gravity="right"
-            android:orientation="vertical">
-
-            <ImageButton
-                android:id="@+id/imageButton11"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="40dp"
-                android:background="@android:color/transparent"
-                android:onClick="llamar"
-                app:srcCompat="@drawable/phone512"
-                android:scaleType="fitCenter"/>
-
-            <ImageButton
-                android:id="@+id/imageButtonTwitter"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="40dp"
-                android:background="@android:color/transparent"
-                android:onClick="lanzarTwitter"
-                app:srcCompat="@drawable/twitter512"
-                android:scaleType="fitCenter"/>
-
-            <ImageButton
-                android:id="@+id/imageButtonYoutube"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="40dp"
-                android:background="@android:color/transparent"
-                android:onClick="lanzarYoutube"
-                app:srcCompat="@drawable/youtube512"
-                android:scaleType="fitCenter"/>
-
-            <ImageButton
-                android:id="@+id/imageButtonWeb"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="40dp"
-                android:background="@android:color/transparent"
-                android:onClick="lanzarWeb"
-                app:srcCompat="@drawable/web512"
-                android:scaleType="fitCenter"/>
-
-            <ImageButton
-                android:id="@+id/imageButtonFacebook"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="40dp"
-                android:background="@android:color/transparent"
-                android:onClick="lanzarFacebook"
-                app:srcCompat="@drawable/facebook512"
-                android:scaleType="fitCenter"/>
-        </LinearLayout>
-    </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:orientation="horizontal"
             android:paddingTop="10dp">
+
             <ImageButton
                 android:id="@+id/imageButton5"
-                android:layout_width="fill_parent"
-                android:layout_weight="1"
+                android:layout_width="95dp"
                 android:layout_height="50dp"
                 app:srcCompat="@drawable/youtubemenu100"
                 android:scaleType="fitCenter"
                 android:background="@android:color/transparent"
                 android:onClick="menuVideos"/>
+
             <ImageButton
                 android:id="@+id/imageButton56"
                 android:layout_width="fill_parent"
