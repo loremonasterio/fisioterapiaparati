@@ -47,19 +47,18 @@
 
     </LinearLayout>
 
-
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Semanas totales de salud para TI"
+        android:text="Sesiones de salud diarias para TI"
         android:gravity="center"
+        android:layout_marginTop="5dp"
         android:textStyle="bold"
         android:textColor="@color/colorPrimary"
         />
-
     <TextView
-        android:id="@+id/etiquetaDiasTotales"
+        android:id="@+id/etiquetaVecesDiarias"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="1"
@@ -67,13 +66,14 @@
         android:textStyle="bold"/>
 
     <SeekBar
-        android:id="@+id/diasTotales"
+        android:id="@+id/vecesdiarias"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:max="30"
+        android:max="5"
         android:progress="1"
         android:layout_marginTop="5dp"/>
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
@@ -100,18 +100,19 @@
         android:max="7"
         android:progress="1"
         android:layout_marginTop="5dp"/>
+
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sesiones de salud diarias para TI"
+        android:text="Semanas totales de salud para TI"
         android:gravity="center"
-        android:layout_marginTop="5dp"
         android:textStyle="bold"
         android:textColor="@color/colorPrimary"
         />
+
     <TextView
-        android:id="@+id/etiquetaVecesDiarias"
+        android:id="@+id/etiquetaDiasTotales"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="1"
@@ -119,11 +120,11 @@
         android:textStyle="bold"/>
 
     <SeekBar
-        android:id="@+id/vecesdiarias"
+        android:id="@+id/diasTotales"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:max="5"
+        android:max="30"
         android:progress="1"
         android:layout_marginTop="5dp"/>
 
