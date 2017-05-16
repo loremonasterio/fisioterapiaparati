@@ -70,7 +70,7 @@ public class SplashScreen extends AppCompatActivity {
 
     }
 
-    private class ComunicacionTask extends AsyncTask<String, Void, String> {
+    public class ComunicacionTask extends AsyncTask<String, Void, String> {
 
         //    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
         @Override

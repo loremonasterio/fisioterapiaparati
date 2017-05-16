@@ -5,9 +5,74 @@
     android:layout_height="match_parent"
     android:background="#FFF"
     android:weightSum="100">
+
+    <ToggleButton
+        android:id="@+id/botonLumbalgia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textOff="Mostrar Lumbalgia"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFF"
+        android:textAllCaps="false"/>
+
+    <ToggleButton
+        android:id="@+id/botonCervicalgia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textOff="Mostrar Cervicalgia"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFF"
+        android:textAllCaps="false"/>
+    <ToggleButton
+        android:id="@+id/botonFascitisPlantar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textOff="Mostrar Fascitis Plantar"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFF"
+        android:textAllCaps="false"/>
+    <ToggleButton
+        android:id="@+id/botonDolorHombro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textOff="Mostrar Dolor de Hombro"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFF"
+        android:textAllCaps="false"/>
+    <ToggleButton
+        android:id="@+id/botonEpiconditilis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textOff="Mostrar Epicondilitis y epitrocleítis"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFF"
+        android:textAllCaps="false"/>
+    <ToggleButton
+        android:id="@+id/botonEsguinceTobillo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textOff="Mostrar Esguince de Tobillo"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFF"
+        android:textAllCaps="false"/>
+    <ToggleButton
+        android:id="@+id/botonSindromePiramidal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textOff="Mostrar Sindrome del piramidal"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFF"
+        android:textAllCaps="false"/>
+
+    <ListView
+        android:id="@+id/lista"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_weight="99.50" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="60dp"
         android:orientation="horizontal"
         android:paddingTop="10dp">
         <ImageButton
