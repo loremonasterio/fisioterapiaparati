@@ -24,6 +24,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.StringTokenizer;
 
@@ -55,15 +56,12 @@ public class Calendario extends AppCompatActivity {
         if (ejercicioCreado) {
             Intent intent = new Intent(this, Agenda.class);
             this.startActivity(intent);
+            this.finish();
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendario);
         diasTotales = (SeekBar)findViewById(R.id.diasTotales);
-        diasSemanales = (SeekBar)findViewById(R.id.diasSemana);
-        vecesDiarias = (SeekBar)findViewById(R.id.vecesdiarias);
         etiquetaDiasTotales = (TextView)findViewById(R.id.etiquetaDiasTotales);
-        etiquetaDiasSemanales = (TextView)findViewById(R.id.etiquetaDiasSemanales);
-        etiquetaVecesDiarias = (TextView)findViewById(R.id.etiquetaVecesDiarias);
         lista = (ListView)findViewById(R.id.listaVideos);
         imagen1 = (ImageView)findViewById(R.id.imagen1);
         imagen2 = (ImageView)findViewById(R.id.imagen2);
@@ -83,8 +81,6 @@ public class Calendario extends AppCompatActivity {
         }
         generarLista(videos);
         diasTotales.setOnSeekBarChangeListener(new diastotalesListener());
-        diasSemanales.setOnSeekBarChangeListener(new diassemanalesListener());
-        vecesDiarias.setOnSeekBarChangeListener(new vecesdiariasListener());
     }
 
     private class diastotalesListener implements SeekBar.OnSeekBarChangeListener {
@@ -100,33 +96,6 @@ public class Calendario extends AppCompatActivity {
         public void onStopTrackingTouch(SeekBar seekBar) {}
 
     }
-    private class diassemanalesListener implements SeekBar.OnSeekBarChangeListener {
-
-        public void onProgressChanged(SeekBar seekBar, int progress,
-                                      boolean fromUser) {
-            //set textView's text
-            etiquetaDiasSemanales.setText(""+progress);
-        }
-
-        public void onStartTrackingTouch(SeekBar seekBar) {}
-
-        public void onStopTrackingTouch(SeekBar seekBar) {}
-
-    }
-    private class vecesdiariasListener implements SeekBar.OnSeekBarChangeListener {
-
-        public void onProgressChanged(SeekBar seekBar, int progress,
-                                      boolean fromUser) {
-            //set textView's text
-            etiquetaVecesDiarias.setText(""+progress);
-        }
-
-        public void onStartTrackingTouch(SeekBar seekBar) {}
-
-        public void onStopTrackingTouch(SeekBar seekBar) {}
-
-    }
-
     public void anadirVideos(String cadena) throws JSONException {
         StringTokenizer st = new StringTokenizer(cadena,"|");
         while(st.hasMoreElements()){
@@ -267,8 +236,6 @@ public class Calendario extends AppCompatActivity {
         SharedPreferences.Editor editor = sp.edit();
         editor.putBoolean("EjercicioCreado", true);
         editor.putInt("DiasTotales",diasTotales.getProgress());
-        editor.putInt("DiasSemanales",diasSemanales.getProgress());
-        editor.putInt("VecesDiarias",vecesDiarias.getProgress());
         editor.putString("VideosEjercicio", cadenaVideosEjercicio);
         editor.putString("FechaInicio",fechaInicio.toString());
         //editor.putString("EjercicioResumen", ejercicio.toString());
@@ -276,6 +243,7 @@ public class Calendario extends AppCompatActivity {
         Intent intent = new Intent(this, Agenda.class);
         this.startActivity(intent);
         //System.out.println(ejercicio);
+
     }
 
     public void borrarVideo(View v){
@@ -356,21 +324,25 @@ public class Calendario extends AppCompatActivity {
     public void menuVideos(View v){
         Intent intent = new Intent(this, MainActivity.class);
         this.startActivity(intent);
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
         this.finish();
     }
     public void menuPatologias(View v){
         Intent intent = new Intent(this, Patologias.class);
         this.startActivity(intent);
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
         this.finish();
     }
     public void menuCalendario(View v){
         Intent intent = new Intent(this, Calendario.class);
         this.startActivity(intent);
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
         this.finish();
     }
     public void menuContacto(View v){
         Intent intent = new Intent(this, Contacto.class);
         this.startActivity(intent);
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
         this.finish();
     }
 }

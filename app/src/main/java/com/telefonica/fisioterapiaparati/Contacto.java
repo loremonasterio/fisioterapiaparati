@@ -1,8 +1,10 @@
 package com.telefonica.fisioterapiaparati;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
@@ -19,25 +21,49 @@ public class Contacto extends AppCompatActivity {
         nombre = (TextView)findViewById(R.id.inputnombre);
         telefono = (TextView)findViewById(R.id.inputtelefono);
         mensaje = (TextView)findViewById(R.id.inputmensaje);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-        /*
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
     }
 
     public void enviar(View v){
-        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                "mailto","lore.monasterio.mtnz@gmail.com", null));
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Email enviado desde app Fisioterapia para TI");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "Nombre: "+nombre.getText()+"\n"+" Teléfono: "+telefono.getText()+"\n"+"\n"+mensaje.getText());
-        startActivity(Intent.createChooser(emailIntent, "Enviar email..."));
+        if(nombre.getText().toString().equals("")){
+            AlertDialog alertDialog = new AlertDialog.Builder(Contacto.this,R.style.Theme_AppCompat_Light_Dialog_Alert).create();
+            alertDialog.setTitle("Faltan campos por rellenar");
+            alertDialog.setMessage("El nombre es obligatorio");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Aceptar",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
+        }else if(telefono.getText().toString().equals("")){
+            AlertDialog alertDialog = new AlertDialog.Builder(Contacto.this,R.style.Theme_AppCompat_Light_Dialog_Alert).create();
+            alertDialog.setTitle("Faltan campos por rellenar");
+            alertDialog.setMessage("El teléfono es obligatorio");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Aceptar",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
+        }else if(mensaje.getText().toString().equals("")){
+            AlertDialog alertDialog = new AlertDialog.Builder(Contacto.this,R.style.Theme_AppCompat_Light_Dialog_Alert).create();
+            alertDialog.setTitle("Faltan campos por rellenar");
+            alertDialog.setMessage("El campo mensaje no puede estar vacío");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Aceptar",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
+        }else{
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                    "mailto","lore.monasterio.mtnz@gmail.com", null));
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Email enviado desde app Fisioterapia para TI");
+            emailIntent.putExtra(Intent.EXTRA_TEXT, "Nombre: "+nombre.getText()+"\n"+" Teléfono: "+telefono.getText()+"\n"+"\n"+mensaje.getText());
+            startActivity(Intent.createChooser(emailIntent, "Enviar email..."));
+        }
     }
 
     public void borrar(View v){
@@ -73,7 +99,7 @@ public class Contacto extends AppCompatActivity {
     }
 
     public void llamar(View v){
-        startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "686855186", null)));
+        startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "683327319", null)));
     }
 
     public void lanzarYoutube(View v) {

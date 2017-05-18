@@ -7,32 +7,66 @@
     android:weightSum="1">
 
 
-    <TextView
-        android:id="@+id/diasTotales"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
-        android:textColor="@color/colorPrimary"
-        android:gravity="center"
-        android:textStyle="bold"/>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="horizontal"
-        android:id="@+id/imagenes">
+        android:layout_weight="0.99"
+        android:orientation="vertical"
+        android:weightSum="1">
+        <TextView
+            android:id="@+id/diasTotales"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/colorPrimary"
+            android:gravity="center"
+            android:textStyle="bold"/>
+        <SeekBar
+            android:id="@+id/progreso"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="5"
+            android:progress="1"
+            android:layout_marginTop="5dp"/>
+        <TextView
+            android:id="@+id/etiquetaVideos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Videos de la rutina"
+            android:textColor="@color/colorPrimary"
+            android:gravity="center"
+            android:textStyle="bold"/>
+        <ListView
+            android:id="@+id/listaVideosRutina"
+            android:layout_width="match_parent"
+            android:layout_height="271dp"
+            android:layout_weight="0.86" />
+    <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Añadir al calendario"
+            android:onClick="anadirCalendario"
+            android:textAllCaps="false"
+            android:textColor="#FFF"
+            android:background="@color/colorPrimary"
+            android:layout_marginBottom="10dp"/>
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Borrar Ejercicio"
+            android:onClick="borrarEjercicio"
+            android:textAllCaps="false"
+            android:textColor="#FFF"
+            android:background="@color/colorPrimary"/>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Borrar Ejercicio"
-        android:onClick="borrarEjercicio"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="75dp"
         android:orientation="horizontal"
         android:paddingTop="10dp">
         <ImageButton

@@ -34,14 +34,20 @@ public class Patologias extends AppCompatActivity {
     private ArrayList<Video> videosEpicondilitis = new ArrayList<Video>();
     private ArrayList<Video> videosEsguinceTobillo = new ArrayList<Video>();
     private ArrayList<Video> videosSindromePiramidal = new ArrayList<Video>();
+    private ArrayList<Video> videosSinCargar = new ArrayList<Video>();
     private String nextToken = "";
     private ListView lista;
+    private Video videoSinCargar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patologias);
+        videoSinCargar = new Video("aaaa", "No has elegido ninguna lista", "aa", "https://yt3.ggpht.com/etFgHSdWHoZXJjiniPqQQotCkgOUQbA7Z7ETFVAYk2JR7pQOfwtQG2S5D8ABeJRBy4l90riDyg=w2120-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no");
+        videosSinCargar.add(videoSinCargar);
+        lista = (ListView)(findViewById(R.id.lista));
+        generarListaSinCargar(videosSinCargar);
         cargarVideosLumbalgia("https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&type=video&playlistId=PLdDOMYhbAZ-abfmZ8WlryXzMKPZUNL8XZ&key=AIzaSyArBI9PaihSf2ShUV3zeQLby9ItDDNvJgE&maxResults=30");
         cargarVideosCervicalgia("https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&type=video&playlistId=PLdDOMYhbAZ-ZTzpXD2fT1NatzYOJj2YYA&key=AIzaSyArBI9PaihSf2ShUV3zeQLby9ItDDNvJgE&maxResults=30");
         cargarVideosFascitisPlantar("https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&type=video&playlistId=PLdDOMYhbAZ-bvCWJTSfxpQS816NSuyBG5&key=AIzaSyArBI9PaihSf2ShUV3zeQLby9ItDDNvJgE&maxResults=30");
@@ -49,7 +55,6 @@ public class Patologias extends AppCompatActivity {
         cargarVideosEpiconditilis("https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&type=video&playlistId=PLdDOMYhbAZ-ZiGGLC4lALSUgcHVvt_huH&key=AIzaSyArBI9PaihSf2ShUV3zeQLby9ItDDNvJgE&maxResults=30");
         cargarVideosEsguinceTobillo("https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&type=video&playlistId=PLdDOMYhbAZ-Z6lpGDnuk4tw7eTmwwiJH9&key=AIzaSyArBI9PaihSf2ShUV3zeQLby9ItDDNvJgE&maxResults=30");
         cargarVideosSindromePiramidal("https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&type=video&playlistId=PLdDOMYhbAZ-ZypxsyzsLhyly3lQSeNlpl&key=AIzaSyArBI9PaihSf2ShUV3zeQLby9ItDDNvJgE&maxResults=30");
-        lista = (ListView)(findViewById(R.id.lista));
         final ToggleButton toggleLumbalgia = (ToggleButton) findViewById(R.id.botonLumbalgia);
         final ToggleButton toggleCervicalgia = (ToggleButton) findViewById(R.id.botonCervicalgia);
         final ToggleButton toggleFascitisPlantar = (ToggleButton) findViewById(R.id.botonFascitisPlantar);
@@ -178,6 +183,19 @@ public class Patologias extends AppCompatActivity {
         });
     }
 
+
+    public void generarListaSinCargar(ArrayList<Video> videos){
+        String[] titulos = new String[videos.size()];
+        String[] fotos = new String[videos.size()];
+        final String[] videoIDS = new String[videos.size()];
+        for (int i=0; i<videos.size(); i++){
+            titulos[i] = videos.get(i).getTitulo();
+            fotos[i] = videos.get(i).getImagen();
+            videoIDS[i] = videos.get(i).getVideoID();
+        }
+        CustomList adapter = new CustomList(Patologias.this, titulos, fotos);
+        lista.setAdapter(adapter);
+    }
 
     public void generarLista(ArrayList<Video> videos){
         String[] titulos = new String[videos.size()];

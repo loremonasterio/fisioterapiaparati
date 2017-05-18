@@ -5,150 +5,103 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF"
-    android:weightSum="100">
+    android:weightSum="1">
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="70dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="0.99">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginRight="5dp"
-            android:id="@+id/imagen1"
-            app:srcCompat="@drawable/no_image"
-            android:onClick="borrarVideo"/>
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="50dp"
-            android:layout_marginRight="5dp"
-            android:id="@+id/imagen2"
-            app:srcCompat="@drawable/no_image"
-            android:onClick="borrarVideo"/>
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="50dp"
-            android:layout_marginRight="5dp"
-            android:id="@+id/imagen3"
-            app:srcCompat="@drawable/no_image"
-            android:onClick="borrarVideo"/>
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="50dp"
-            android:layout_marginRight="5dp"
-            android:id="@+id/imagen4"
-            app:srcCompat="@drawable/no_image"
-            android:onClick="borrarVideo"/>
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="50dp"
-            android:id="@+id/imagen5"
-            app:srcCompat="@drawable/no_image"
-            android:onClick="borrarVideo"/>
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="5dp"
+                android:id="@+id/imagen1"
+                app:srcCompat="@drawable/no_image"
+                android:onClick="borrarVideo"/>
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="5dp"
+                android:id="@+id/imagen2"
+                app:srcCompat="@drawable/no_image"
+                android:onClick="borrarVideo"/>
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="5dp"
+                android:id="@+id/imagen3"
+                app:srcCompat="@drawable/no_image"
+                android:onClick="borrarVideo"/>
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="5dp"
+                android:id="@+id/imagen4"
+                app:srcCompat="@drawable/no_image"
+                android:onClick="borrarVideo"/>
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:id="@+id/imagen5"
+                app:srcCompat="@drawable/no_image"
+                android:onClick="borrarVideo"/>
 
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sesiones totales de salud para TI"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            />
+
+        <TextView
+            android:id="@+id/etiquetaDiasTotales"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:gravity="center"
+            android:textStyle="bold"/>
+
+        <SeekBar
+            android:id="@+id/diasTotales"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="30"
+            android:progress="1"
+            android:layout_marginTop="5dp"/>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.9"
+            android:id="@+id/listaVideos" />
+
+        <Button
+            android:id="@+id/rutina"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:text="Crear rutina"
+            android:textAllCaps="false"
+            android:background="@color/colorPrimary"
+            android:textColor="#FFF"
+            android:onClick="crearRutina"/>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Sesiones de salud diarias para TI"
-        android:gravity="center"
-        android:layout_marginTop="5dp"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimary"
-        />
-    <TextView
-        android:id="@+id/etiquetaVecesDiarias"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="1"
-        android:gravity="center"
-        android:textStyle="bold"/>
-
-    <SeekBar
-        android:id="@+id/vecesdiarias"
-        style="@style/Widget.AppCompat.SeekBar.Discrete"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:max="5"
-        android:progress="1"
-        android:layout_marginTop="5dp"/>
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Días a la semana de salud para TI"
-        android:gravity="center"
-        android:layout_marginTop="5dp"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimary"
-        />
-    <TextView
-        android:id="@+id/etiquetaDiasSemanales"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="1"
-        android:gravity="center"
-        android:textStyle="bold"/>
-
-    <SeekBar
-        android:id="@+id/diasSemana"
-        style="@style/Widget.AppCompat.SeekBar.Discrete"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:max="7"
-        android:progress="1"
-        android:layout_marginTop="5dp"/>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Semanas totales de salud para TI"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimary"
-        />
-
-    <TextView
-        android:id="@+id/etiquetaDiasTotales"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="1"
-        android:gravity="center"
-        android:textStyle="bold"/>
-
-    <SeekBar
-        android:id="@+id/diasTotales"
-        style="@style/Widget.AppCompat.SeekBar.Discrete"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:max="30"
-        android:progress="1"
-        android:layout_marginTop="5dp"/>
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="224dp"
-        android:id="@+id/listaVideos" />
-
-    <Button
-        android:id="@+id/rutina"
-        android:layout_marginTop="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:text="Crear rutina"
-        android:textAllCaps="false"
-        android:background="@color/colorPrimary"
-        android:textColor="#FFF"
-        android:onClick="crearRutina"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="75dp"
         android:orientation="horizontal"
-        android:paddingTop="10dp"
-        android:layout_weight="90">
+        android:paddingTop="10dp">
         <ImageButton
             android:id="@+id/imageButton5"
             android:layout_width="fill_parent"

@@ -3,26 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_weight="100">
+    android:layout_weight="1">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="500dp">
+            android:layout_height="wrap_content"
+            android:layout_weight="0.99">
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="295dp"
                 android:layout_height="491dp"
                 android:layout_gravity="left"
-                android:layout_marginRight="10dp"
-                android:layout_weight="90"
-                >
+                android:layout_marginRight="10dp">
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -167,7 +165,7 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="75dp"
             android:orientation="horizontal"
             android:paddingTop="10dp">
 
