@@ -24,7 +24,6 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.StringTokenizer;
 
@@ -178,7 +177,7 @@ public class Calendario extends AppCompatActivity {
                             Toast.makeText(Calendario.this, "Video añadido, para eliminarlo pincha sobre su miniatura en la parte superior",Toast.LENGTH_SHORT).show();
                         }else{
                             if(videosAnadidos.size()==5){
-                                AlertDialog alertDialog = new AlertDialog.Builder(Calendario.this,R.style.Theme_AppCompat_Light_Dialog_Alert).create();
+                                AlertDialog alertDialog = new AlertDialog.Builder(Calendario.this,R.style.MyAlertDialogStyle).create();
                                 alertDialog.setTitle("No se pueden añadir más vídeos");
                                 alertDialog.setMessage("El máximo de vídeos para añadir es 5");
                                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Aceptar",

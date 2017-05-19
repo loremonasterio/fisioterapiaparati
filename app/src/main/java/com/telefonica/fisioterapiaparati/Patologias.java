@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ToggleButton;
 
@@ -38,15 +39,17 @@ public class Patologias extends AppCompatActivity {
     private String nextToken = "";
     private ListView lista;
     private Video videoSinCargar;
+    private LinearLayout layoutLista;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patologias);
+        lista = (ListView)(findViewById(R.id.lista));
+        layoutLista = (LinearLayout)(findViewById(R.id.layoutLista));
         videoSinCargar = new Video("aaaa", "No has elegido ninguna lista", "aa", "https://yt3.ggpht.com/etFgHSdWHoZXJjiniPqQQotCkgOUQbA7Z7ETFVAYk2JR7pQOfwtQG2S5D8ABeJRBy4l90riDyg=w2120-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no");
         videosSinCargar.add(videoSinCargar);
-        lista = (ListView)(findViewById(R.id.lista));
         generarListaSinCargar(videosSinCargar);
         cargarVideosLumbalgia("https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&type=video&playlistId=PLdDOMYhbAZ-abfmZ8WlryXzMKPZUNL8XZ&key=AIzaSyArBI9PaihSf2ShUV3zeQLby9ItDDNvJgE&maxResults=30");
         cargarVideosCervicalgia("https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&type=video&playlistId=PLdDOMYhbAZ-ZTzpXD2fT1NatzYOJj2YYA&key=AIzaSyArBI9PaihSf2ShUV3zeQLby9ItDDNvJgE&maxResults=30");
@@ -65,119 +68,211 @@ public class Patologias extends AppCompatActivity {
         toggleLumbalgia.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    toggleLumbalgia.setTextOn("Ocultar lumbalgía");
+                    layoutLista.getLayoutParams().height = LinearLayout.LayoutParams.MATCH_PARENT;
                     toggleCervicalgia.setChecked(false);
+                    toggleCervicalgia.setVisibility(View.GONE);
                     toggleFascitisPlantar.setChecked(false);
+                    toggleFascitisPlantar.setVisibility(View.GONE);
                     toggleDolorHombro.setChecked(false);
+                    toggleDolorHombro.setVisibility(View.GONE);
                     toggleEpiconditilis.setChecked(false);
+                    toggleEpiconditilis.setVisibility(View.GONE);
                     toggleEsguinceTobillo.setChecked(false);
+                    toggleEsguinceTobillo.setVisibility(View.GONE);
                     toggleSindromePiramidal.setChecked(false);
+                    toggleSindromePiramidal.setVisibility(View.GONE);
                     generarLista(videosLumbalgia);
                     lista.setVisibility(View.VISIBLE);
-                    toggleLumbalgia.setTextOn("Ocultar Lumbalgía");
                 } else {
                     lista.setVisibility(View.INVISIBLE);
+                    toggleCervicalgia.setVisibility(View.VISIBLE);
+                    toggleFascitisPlantar.setVisibility(View.VISIBLE);
+                    toggleDolorHombro.setVisibility(View.VISIBLE);
+                    toggleEpiconditilis.setVisibility(View.VISIBLE);
+                    toggleEsguinceTobillo.setVisibility(View.VISIBLE);
+                    toggleSindromePiramidal.setVisibility(View.VISIBLE);
+
                 }
             }
         });
         toggleCervicalgia.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    toggleCervicalgia.setTextOn("Ocultar Cervicalgía");
+                    layoutLista.getLayoutParams().height = LinearLayout.LayoutParams.MATCH_PARENT;
                     toggleLumbalgia.setChecked(false);
+                    toggleLumbalgia.setVisibility(View.GONE);
                     toggleFascitisPlantar.setChecked(false);
+                    toggleFascitisPlantar.setVisibility(View.GONE);
                     toggleDolorHombro.setChecked(false);
+                    toggleDolorHombro.setVisibility(View.GONE);
                     toggleEpiconditilis.setChecked(false);
+                    toggleEpiconditilis.setVisibility(View.GONE);
                     toggleEsguinceTobillo.setChecked(false);
+                    toggleEsguinceTobillo.setVisibility(View.GONE);
                     toggleSindromePiramidal.setChecked(false);
+                    toggleSindromePiramidal.setVisibility(View.GONE);
                     generarLista(videosCervicalgia);
                     lista.setVisibility(View.VISIBLE);
-                    toggleCervicalgia.setTextOn("Ocultar Cervicalgía");
                 } else {
                     lista.setVisibility(View.INVISIBLE);
+                    toggleLumbalgia.setVisibility(View.VISIBLE);
+                    toggleFascitisPlantar.setVisibility(View.VISIBLE);
+                    toggleDolorHombro.setVisibility(View.VISIBLE);
+                    toggleEpiconditilis.setVisibility(View.VISIBLE);
+                    toggleEsguinceTobillo.setVisibility(View.VISIBLE);
+                    toggleSindromePiramidal.setVisibility(View.VISIBLE);
                 }
             }
         });
         toggleFascitisPlantar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    toggleFascitisPlantar.setTextOn("Ocultar Fascitis Plantar");
+                    layoutLista.getLayoutParams().height = LinearLayout.LayoutParams.MATCH_PARENT;
                     toggleLumbalgia.setChecked(false);
+                    toggleLumbalgia.setVisibility(View.GONE);
                     toggleCervicalgia.setChecked(false);
+                    toggleCervicalgia.setVisibility(View.GONE);
                     toggleDolorHombro.setChecked(false);
+                    toggleDolorHombro.setVisibility(View.GONE);
                     toggleEpiconditilis.setChecked(false);
+                    toggleEpiconditilis.setVisibility(View.GONE);
                     toggleEsguinceTobillo.setChecked(false);
+                    toggleEsguinceTobillo.setVisibility(View.GONE);
                     toggleSindromePiramidal.setChecked(false);
+                    toggleSindromePiramidal.setVisibility(View.GONE);
                     generarLista(videosFascitisPlantar);
                     lista.setVisibility(View.VISIBLE);
-                    toggleFascitisPlantar.setTextOn("Ocultar Fascitis Plantar");
                 } else {
                     lista.setVisibility(View.INVISIBLE);
+                    toggleLumbalgia.setVisibility(View.VISIBLE);
+                    toggleCervicalgia.setVisibility(View.VISIBLE);
+                    toggleDolorHombro.setVisibility(View.VISIBLE);
+                    toggleEpiconditilis.setVisibility(View.VISIBLE);
+                    toggleEsguinceTobillo.setVisibility(View.VISIBLE);
+                    toggleSindromePiramidal.setVisibility(View.VISIBLE);
                 }
             }
         });
         toggleDolorHombro.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    toggleDolorHombro.setTextOn("Ocultar Dolor de Hombro");
+                    layoutLista.getLayoutParams().height = LinearLayout.LayoutParams.MATCH_PARENT;
                     toggleLumbalgia.setChecked(false);
+                    toggleLumbalgia.setVisibility(View.GONE);
                     toggleCervicalgia.setChecked(false);
+                    toggleCervicalgia.setVisibility(View.GONE);
                     toggleFascitisPlantar.setChecked(false);
+                    toggleFascitisPlantar.setVisibility(View.GONE);
                     toggleEpiconditilis.setChecked(false);
+                    toggleEpiconditilis.setVisibility(View.GONE);
                     toggleEsguinceTobillo.setChecked(false);
+                    toggleEsguinceTobillo.setVisibility(View.GONE);
                     toggleSindromePiramidal.setChecked(false);
+                    toggleSindromePiramidal.setVisibility(View.GONE);
                     generarLista(videosDolorHombro);
                     lista.setVisibility(View.VISIBLE);
-                    toggleDolorHombro.setTextOn("Ocultar Dolor de Hombro");
                 } else {
                     lista.setVisibility(View.INVISIBLE);
+                    toggleLumbalgia.setVisibility(View.VISIBLE);
+                    toggleCervicalgia.setVisibility(View.VISIBLE);
+                    toggleFascitisPlantar.setVisibility(View.VISIBLE);
+                    toggleEpiconditilis.setVisibility(View.VISIBLE);
+                    toggleEsguinceTobillo.setVisibility(View.VISIBLE);
+                    toggleSindromePiramidal.setVisibility(View.VISIBLE);
                 }
             }
         });
         toggleEpiconditilis.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    toggleEpiconditilis.setTextOn("Ocultar Epicondilitis y epitrocleítis");
+                    layoutLista.getLayoutParams().height = LinearLayout.LayoutParams.MATCH_PARENT;
                     toggleLumbalgia.setChecked(false);
+                    toggleLumbalgia.setVisibility(View.GONE);
                     toggleCervicalgia.setChecked(false);
+                    toggleCervicalgia.setVisibility(View.GONE);
                     toggleFascitisPlantar.setChecked(false);
+                    toggleFascitisPlantar.setVisibility(View.GONE);
                     toggleDolorHombro.setChecked(false);
+                    toggleDolorHombro.setVisibility(View.GONE);
                     toggleEsguinceTobillo.setChecked(false);
+                    toggleEsguinceTobillo.setVisibility(View.GONE);
                     toggleSindromePiramidal.setChecked(false);
+                    toggleSindromePiramidal.setVisibility(View.GONE);
                     generarLista(videosEpicondilitis);
                     lista.setVisibility(View.VISIBLE);
-                    toggleEpiconditilis.setTextOn("Ocultar Epicondilitis y epitrocleítis");
                 } else {
                     lista.setVisibility(View.INVISIBLE);
+                    toggleLumbalgia.setVisibility(View.VISIBLE);
+                    toggleCervicalgia.setVisibility(View.VISIBLE);
+                    toggleFascitisPlantar.setVisibility(View.VISIBLE);
+                    toggleDolorHombro.setVisibility(View.VISIBLE);
+                    toggleEsguinceTobillo.setVisibility(View.VISIBLE);
+                    toggleSindromePiramidal.setVisibility(View.VISIBLE);
                 }
             }
         });
         toggleEsguinceTobillo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    toggleEsguinceTobillo.setTextOn("Ocultar Esguince de Tobillo");
+                    layoutLista.getLayoutParams().height = LinearLayout.LayoutParams.MATCH_PARENT;
                     toggleLumbalgia.setChecked(false);
+                    toggleLumbalgia.setVisibility(View.GONE);
                     toggleCervicalgia.setChecked(false);
+                    toggleCervicalgia.setVisibility(View.GONE);
                     toggleFascitisPlantar.setChecked(false);
+                    toggleFascitisPlantar.setVisibility(View.GONE);
                     toggleDolorHombro.setChecked(false);
+                    toggleDolorHombro.setVisibility(View.GONE);
                     toggleEpiconditilis.setChecked(false);
+                    toggleEpiconditilis.setVisibility(View.GONE);
                     toggleSindromePiramidal.setChecked(false);
+                    toggleSindromePiramidal.setVisibility(View.GONE);
                     generarLista(videosEsguinceTobillo);
                     lista.setVisibility(View.VISIBLE);
-                    toggleEsguinceTobillo.setTextOn("Ocultar Esguince de Tobillo");
                 } else {
                     lista.setVisibility(View.INVISIBLE);
+                    toggleLumbalgia.setVisibility(View.VISIBLE);
+                    toggleCervicalgia.setVisibility(View.VISIBLE);
+                    toggleFascitisPlantar.setVisibility(View.VISIBLE);
+                    toggleDolorHombro.setVisibility(View.VISIBLE);
+                    toggleEpiconditilis.setVisibility(View.VISIBLE);
+                    toggleSindromePiramidal.setVisibility(View.VISIBLE);
                 }
             }
         });
         toggleSindromePiramidal.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    toggleSindromePiramidal.setTextOn("Ocultar Sindrome Piramidal");
+                    layoutLista.getLayoutParams().height = LinearLayout.LayoutParams.MATCH_PARENT;
                     toggleLumbalgia.setChecked(false);
+                    toggleLumbalgia.setVisibility(View.GONE);
                     toggleCervicalgia.setChecked(false);
+                    toggleCervicalgia.setVisibility(View.GONE);
                     toggleFascitisPlantar.setChecked(false);
+                    toggleFascitisPlantar.setVisibility(View.GONE);
                     toggleDolorHombro.setChecked(false);
+                    toggleDolorHombro.setVisibility(View.GONE);
                     toggleEpiconditilis.setChecked(false);
+                    toggleEpiconditilis.setVisibility(View.GONE);
                     toggleEsguinceTobillo.setChecked(false);
+                    toggleEsguinceTobillo.setVisibility(View.GONE);
                     generarLista(videosSindromePiramidal);
                     lista.setVisibility(View.VISIBLE);
-                    toggleSindromePiramidal.setTextOn("Ocultar Sindrome del piramidal");
                 } else {
                     lista.setVisibility(View.INVISIBLE);
+                    toggleLumbalgia.setVisibility(View.VISIBLE);
+                    toggleCervicalgia.setVisibility(View.VISIBLE);
+                    toggleFascitisPlantar.setVisibility(View.VISIBLE);
+                    toggleDolorHombro.setVisibility(View.VISIBLE);
+                    toggleEpiconditilis.setVisibility(View.VISIBLE);
+                    toggleEsguinceTobillo.setVisibility(View.VISIBLE);
                 }
             }
         });

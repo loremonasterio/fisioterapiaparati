@@ -37,7 +37,8 @@
             android:label="@string/title_activity_patologias"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Agenda"></activity>
+        <activity android:name=".Agenda"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

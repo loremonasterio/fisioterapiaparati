@@ -25,7 +25,7 @@ public class Contacto extends AppCompatActivity {
 
     public void enviar(View v){
         if(nombre.getText().toString().equals("")){
-            AlertDialog alertDialog = new AlertDialog.Builder(Contacto.this,R.style.Theme_AppCompat_Light_Dialog_Alert).create();
+            AlertDialog alertDialog = new AlertDialog.Builder(Contacto.this,R.style.MyAlertDialogStyle).create();
             alertDialog.setTitle("Faltan campos por rellenar");
             alertDialog.setMessage("El nombre es obligatorio");
             alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Aceptar",
@@ -36,7 +36,7 @@ public class Contacto extends AppCompatActivity {
                     });
             alertDialog.show();
         }else if(telefono.getText().toString().equals("")){
-            AlertDialog alertDialog = new AlertDialog.Builder(Contacto.this,R.style.Theme_AppCompat_Light_Dialog_Alert).create();
+            AlertDialog alertDialog = new AlertDialog.Builder(Contacto.this,R.style.MyAlertDialogStyle).create();
             alertDialog.setTitle("Faltan campos por rellenar");
             alertDialog.setMessage("El teléfono es obligatorio");
             alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Aceptar",
@@ -47,7 +47,7 @@ public class Contacto extends AppCompatActivity {
                     });
             alertDialog.show();
         }else if(mensaje.getText().toString().equals("")){
-            AlertDialog alertDialog = new AlertDialog.Builder(Contacto.this,R.style.Theme_AppCompat_Light_Dialog_Alert).create();
+            AlertDialog alertDialog = new AlertDialog.Builder(Contacto.this,R.style.MyAlertDialogStyle).create();
             alertDialog.setTitle("Faltan campos por rellenar");
             alertDialog.setMessage("El campo mensaje no puede estar vacío");
             alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Aceptar",
