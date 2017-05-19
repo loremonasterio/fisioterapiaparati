@@ -56,7 +56,7 @@
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Borrar Ejercicio"
+            android:text="Borrar rutina"
             android:onClick="borrarEjercicio"
             android:textAllCaps="false"
             android:textColor="#FFF"

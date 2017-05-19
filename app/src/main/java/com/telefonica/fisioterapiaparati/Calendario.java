@@ -31,13 +31,8 @@ public class Calendario extends AppCompatActivity {
 
     private ArrayList<Video> videos = new ArrayList<Video>();
     private ArrayList<Video> videosRutina = new ArrayList<Video>();
-    private ArrayList<String> videosAnadidos = new ArrayList<String>();
     private SeekBar diasTotales;
-    private SeekBar diasSemanales;
-    private SeekBar vecesDiarias;
     private TextView etiquetaDiasTotales;
-    private TextView etiquetaDiasSemanales;
-    private TextView etiquetaVecesDiarias;
     private ListView lista;
     private ImageView imagen1;
     private ImageView imagen2;
@@ -120,63 +115,59 @@ public class Calendario extends AppCompatActivity {
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        if(imagen1.getTag(R.id.tag_video)!="ocupado0" && !videosAnadidos.contains(videoIDS[position])){
-                            videosAnadidos.add(videoIDS[position]);
+                        if(imagen1.getTag(R.id.tag_video)!="ocupado0"){
+
                             new Calendario.ImageLoadTask(fotos[position], imagen1).execute();
                             imagen1.setTag(R.id.tag_video,"ocupado0");
                             Video video = new Video(videoIDS[position], titulos[position], descripciones[position], fotos[position]);
                             imagen1.setTag(R.id.tag_video_id,video.getVideoID());
                             videosRutina.add(video);
-                            cadenaVideosEjercicio +=video+"|";
+                            //cadenaVideosEjercicio +=video+"|";
                             view.setTag(R.id.tag_video,"ocupado0");
                             view.setTag(R.id.tag_video_id,position);
                             Toast.makeText(Calendario.this, "Video añadido, para eliminarlo pincha sobre su miniatura en la parte superior",Toast.LENGTH_SHORT).show();
-                        }else if(imagen2.getTag(R.id.tag_video)!="ocupado1" && !videosAnadidos.contains(videoIDS[position])){
-                            videosAnadidos.add(videoIDS[position]);
+                        }else if(imagen2.getTag(R.id.tag_video)!="ocupado1"){
                             new Calendario.ImageLoadTask(fotos[position], imagen2).execute();
                             imagen2.setTag(R.id.tag_video,"ocupado1");
                             Video video = new Video(videoIDS[position], titulos[position], descripciones[position], fotos[position]);
                             imagen2.setTag(R.id.tag_video_id,video.getVideoID());
                             videosRutina.add(video);
-                            cadenaVideosEjercicio +=video+"|";
+                            //cadenaVideosEjercicio +=video+"|";
                             view.setTag(R.id.tag_video,"ocupado1");
                             view.setTag(R.id.tag_video_id,position);
                             Toast.makeText(Calendario.this, "Video añadido, para eliminarlo pincha sobre su miniatura en la parte superior",Toast.LENGTH_SHORT).show();
-                        }else if(imagen3.getTag(R.id.tag_video)!="ocupado2" && !videosAnadidos.contains(videoIDS[position])){
-                            videosAnadidos.add(videoIDS[position]);
+                        }else if(imagen3.getTag(R.id.tag_video)!="ocupado2"){
                             new Calendario.ImageLoadTask(fotos[position], imagen3).execute();
                             imagen3.setTag(R.id.tag_video,"ocupado2");
                             Video video = new Video(videoIDS[position], titulos[position], descripciones[position], fotos[position]);
                             imagen3.setTag(R.id.tag_video_id,video.getVideoID());
                             videosRutina.add(video);
-                            cadenaVideosEjercicio +=video+"|";
+                            //cadenaVideosEjercicio +=video+"|";
                             view.setTag(R.id.tag_video,"ocupado2");
                             view.setTag(R.id.tag_video_id,position);
                             Toast.makeText(Calendario.this, "Video añadido, para eliminarlo pincha sobre su miniatura en la parte superior",Toast.LENGTH_SHORT).show();
-                        }else if(imagen4.getTag(R.id.tag_video)!="ocupado3" && !videosAnadidos.contains(videoIDS[position])){
-                            videosAnadidos.add(videoIDS[position]);
+                        }else if(imagen4.getTag(R.id.tag_video)!="ocupado3"){
                             new Calendario.ImageLoadTask(fotos[position], imagen4).execute();
                             imagen4.setTag(R.id.tag_video,"ocupado3");
                             Video video = new Video(videoIDS[position], titulos[position], descripciones[position], fotos[position]);
                             imagen4.setTag(R.id.tag_video_id,video.getVideoID());
                             videosRutina.add(video);
-                            cadenaVideosEjercicio +=video+"|";
+                            //cadenaVideosEjercicio +=video+"|";
                             view.setTag(R.id.tag_video,"ocupado3");
                             view.setTag(R.id.tag_video_id,position);
                             Toast.makeText(Calendario.this, "Video añadido, para eliminarlo pincha sobre su miniatura en la parte superior",Toast.LENGTH_SHORT).show();
-                        }else if(imagen5.getTag(R.id.tag_video)!="ocupado4" && !videosAnadidos.contains(videoIDS[position])){
-                            videosAnadidos.add(videoIDS[position]);
+                        }else if(imagen5.getTag(R.id.tag_video)!="ocupado4" ){
                             new Calendario.ImageLoadTask(fotos[position], imagen5).execute();
                             imagen5.setTag(R.id.tag_video,"ocupado4");
                             Video video = new Video(videoIDS[position], titulos[position], descripciones[position], fotos[position]);
                             imagen5.setTag(R.id.tag_video_id,video.getVideoID());
                             videosRutina.add(video);
-                            cadenaVideosEjercicio +=video+"|";
+                            //cadenaVideosEjercicio +=video+"|";
                             view.setTag(R.id.tag_video,"ocupado4");
                             view.setTag(R.id.tag_video_id,position);
                             Toast.makeText(Calendario.this, "Video añadido, para eliminarlo pincha sobre su miniatura en la parte superior",Toast.LENGTH_SHORT).show();
                         }else{
-                            if(videosAnadidos.size()==5){
+                            if(videosRutina.size()==5){
                                 AlertDialog alertDialog = new AlertDialog.Builder(Calendario.this,R.style.MyAlertDialogStyle).create();
                                 alertDialog.setTitle("No se pueden añadir más vídeos");
                                 alertDialog.setMessage("El máximo de vídeos para añadir es 5");
@@ -228,20 +219,26 @@ public class Calendario extends AppCompatActivity {
 
     }
 
+    public String crearCadenaVideosEjercicios(ArrayList<Video> videosRutina){
+        String cadenaVideos = "";
+        for(int i = 0; i < videosRutina.size(); i++){
+            cadenaVideos += videosRutina.get(i).toString()+"|";
+        }
+        return cadenaVideos;
+    }
+
     public void crearRutina(View v){
         Date fechaInicio = new Date();
-        //Ejercicio ejercicio = new Ejercicio(diasTotales.getProgress(), diasSemanales.getProgress(), vecesDiarias.getProgress(), videosRutina, fechaInicio);
         SharedPreferences sp = this.getSharedPreferences("preferencias", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.putBoolean("EjercicioCreado", true);
         editor.putInt("DiasTotales",diasTotales.getProgress());
-        editor.putString("VideosEjercicio", cadenaVideosEjercicio);
+        editor.putString("VideosEjercicio", cadenaVideosEjercicio=crearCadenaVideosEjercicios(videosRutina));
         editor.putString("FechaInicio",fechaInicio.toString());
-        //editor.putString("EjercicioResumen", ejercicio.toString());
         editor.commit();
         Intent intent = new Intent(this, Agenda.class);
         this.startActivity(intent);
-        //System.out.println(ejercicio);
+        this.finish();
 
     }
 
@@ -254,11 +251,6 @@ public class Calendario extends AppCompatActivity {
                         videosRutina.remove(i);
                     }
                 }
-                for (int i = 0; i < videosAnadidos.size(); i++){
-                    if(videosAnadidos.get(i).equals(v.getTag(R.id.tag_video_id))){
-                        videosAnadidos.remove(i);
-                    }
-                }
                 v.setTag(R.id.tag_video,"");
                 break;
             case "ocupado1":
@@ -266,11 +258,6 @@ public class Calendario extends AppCompatActivity {
                 for (int i = 0; i < videosRutina.size(); i++){
                     if(videosRutina.get(i).getVideoID().equals(v.getTag(R.id.tag_video_id))){
                         videosRutina.remove(i);
-                    }
-                }
-                for (int i = 0; i < videosAnadidos.size(); i++){
-                    if(videosAnadidos.get(i).equals(v.getTag(R.id.tag_video_id))){
-                        videosAnadidos.remove(i);
                     }
                 }
                 v.setTag(R.id.tag_video,"");
@@ -282,11 +269,6 @@ public class Calendario extends AppCompatActivity {
                         videosRutina.remove(i);
                     }
                 }
-                for (int i = 0; i < videosAnadidos.size(); i++){
-                    if(videosAnadidos.get(i).equals(v.getTag(R.id.tag_video_id))){
-                        videosAnadidos.remove(i);
-                    }
-                }
                 v.setTag(R.id.tag_video,"");
                 break;
             case "ocupado3":
@@ -296,11 +278,6 @@ public class Calendario extends AppCompatActivity {
                         videosRutina.remove(i);
                     }
                 }
-                for (int i = 0; i < videosAnadidos.size(); i++){
-                    if(videosAnadidos.get(i).equals(v.getTag(R.id.tag_video_id))){
-                        videosAnadidos.remove(i);
-                    }
-                }
                 v.setTag(R.id.tag_video,"");
                 break;
             case "ocupado4":
@@ -308,11 +285,6 @@ public class Calendario extends AppCompatActivity {
                 for (int i = 0; i < videosRutina.size(); i++){
                     if(videosRutina.get(i).getVideoID().equals(v.getTag(R.id.tag_video_id))){
                         videosRutina.remove(i);
-                    }
-                }
-                for (int i = 0; i < videosAnadidos.size(); i++){
-                    if(videosAnadidos.get(i).equals(v.getTag(R.id.tag_video_id))){
-                        videosAnadidos.remove(i);
                     }
                 }
                 v.setTag(R.id.tag_video,"");

@@ -59,7 +59,7 @@ public class Contacto extends AppCompatActivity {
             alertDialog.show();
         }else{
             Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                    "mailto","lore.monasterio.mtnz@gmail.com", null));
+                    "mailto","fisioterapiaparati@gmail.com", null));
             emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Email enviado desde app Fisioterapia para TI");
             emailIntent.putExtra(Intent.EXTRA_TEXT, "Nombre: "+nombre.getText()+"\n"+" Teléfono: "+telefono.getText()+"\n"+"\n"+mensaje.getText());
             startActivity(Intent.createChooser(emailIntent, "Enviar email..."));

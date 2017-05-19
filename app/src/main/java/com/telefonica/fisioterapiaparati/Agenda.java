@@ -67,7 +67,6 @@ public class Agenda extends AppCompatActivity {
         etiquetaDiasTotales = (TextView)(findViewById(R.id.diasTotales));
         long diff = fechaFin.getTime() - fechaHoy.getTime();
         int days = (int) (diff / (1000*60*60*24));
-        System.out.println("Dias que quedan "+days+" fecha de inicio "+fechaInicio+" fecha fin "+fechaFin);
         if(fechaHoy.compareTo(fechaFin) == 0 || fechaHoy.compareTo(fechaFin) > 0){
             Toast.makeText(Agenda.this, "Tu rutina ha finalizado",Toast.LENGTH_SHORT).show();
             borrarEjercicio();
@@ -93,12 +92,14 @@ public class Agenda extends AppCompatActivity {
     }
 
     public void borrarEjercicio(View v){
+        Toast.makeText(Agenda.this, "Rutina eliminada",Toast.LENGTH_SHORT).show();
         SharedPreferences sp = this.getSharedPreferences("preferencias", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.putBoolean("EjercicioCreado", false);
         editor.commit();
         Intent intent = new Intent(this, MainActivity.class);
         this.startActivity(intent);
+        this.finish();
     }
     public void borrarEjercicio(){
         SharedPreferences sp = this.getSharedPreferences("preferencias", Context.MODE_PRIVATE);
@@ -107,6 +108,7 @@ public class Agenda extends AppCompatActivity {
         editor.commit();
         Intent intent = new Intent(this, Calendario.class);
         this.startActivity(intent);
+        this.finish();
     }
 
     public void anadirCalendario(View v){
@@ -114,11 +116,9 @@ public class Agenda extends AppCompatActivity {
         intent.setType("vnd.android.cursor.item/event");
         intent.putExtra("beginTime", fechaInicio.getTime());
         intent.putExtra("allDay", true);
-        //intent.putExtra("rrule", "FREQ=YEARLY");
         intent.putExtra("endTime", fechaFin.getTime()+60*60*1000);
-        intent.putExtra("title", "Debes realizar tu rutina de ejercicios - Fisioterapia para Ti");
+        intent.putExtra("title", "Fisioterapia para TI - Debes realizar tu rutina de ejercicios");
         intent.putExtra(CalendarContract.Events.DESCRIPTION, "Las URLs de los vídeos a realizar son: \n\n"+videosURLs(videosRutina));
-        intent.putExtra(CalendarContract.Events.HAS_ALARM, 1);
         startActivity(intent);
     }
 
